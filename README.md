@@ -1,11 +1,17 @@
+<div style="text-align: center;">
+
 ![studybuddy](assets/studybuddyBanner.jpeg)
 
-*A Chrome extension emphasizing efficient video comprehension, powered by Javascript, Flask, Heroku, and ChatGPT*
+<div align="center"><em>*A Chrome extension emphasizing efficient video comprehension, powered by Javascript, Flask, Heroku, and ChatGPT*</em></div>
 
-![GitHub last commit](https://img.shields.io/github/last-commit/anorderh/studybuddy_gpt)
-![GitHub code size in bytes](https://img.shields.io/github/repo-size/anorderh/studybuddy_gpt)
-![GitHub contributors](https://img.shields.io/github/contributors/anorderh/studybuddy_gpt)
-![GitHub](https://img.shields.io/github/license/anorderh/studybuddy_gpt)
+<div align="center">
+
+  <a href="">![GitHub last commit](https://img.shields.io/github/last-commit/anorderh/studybuddy_gpt)</a>
+  <a href="">![GitHub contributors](https://img.shields.io/github/contributors/anorderh/studybuddy_gpt)</a>
+  <a href="">![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/anorderh/studybuddy_gpt)</a>
+  <a href="">![GitHub](https://img.shields.io/github/license/anorderh/studybuddy_gpt)</a>
+
+</div>
 
 ## Goal
 
