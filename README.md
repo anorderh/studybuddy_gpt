@@ -1,8 +1,10 @@
-<div style="text-align: center;">
+<div style="text-align: center;" align="center">
 
 ![studybuddy](assets/studybuddyBanner.jpeg)
 
-<div align="center"><em>*A Chrome extension emphasizing efficient video comprehension, powered by Javascript, Flask, Heroku, and ChatGPT*</em></div>
+</div>
+<div align="center"><em>A Chrome extension emphasizing efficient video comprehension, powered by Javascript, Flask, Heroku, and ChatGPT</em></div>
+<p></p>
 
 <div align="center">
 
@@ -40,31 +42,22 @@ This repo's goal was to package the functionality of ChatGPT's language models i
 **NOTE: Studybuddy has NOT yet been deployed on Chrome Web Store.** Refer to "Development".
 
 1. Download and add the Chrome extension to your browser - refresh!
-
 2. Navigate to a Youtube video page (matches `youtube.com/watch` URL)
-
 3. Click generate button
-
 4. *OPTIONAL*: Save transcripts to persist onto browser and/or export into PDFs
 
 ## Development
 
 * While Studybuddy's core works, there are several quality-of-life fixes and bugs which I am in the process of fixing
-
 * As such, both the extension AND webserver (API) have *not been deployed*
-
 * While this will be addressed soon, you are still able to use the extension with a local `flask` server
-  
   * In `modules/http.js`, line 6 is configured to **localhost**
 
 ## Dependencies
 
 * [Flask](https://flask.palletsprojects.com/en/2.3.x/)
-
 * [Chrome Extension API](https://developer.chrome.com/docs/extensions/reference/)
-
 * [OpenAI Platform](https://platform.openai.com/docs/guides/gpt)
-
 * [Pytube](https://github.com/pytube/pytube)
 
 ## Contributing
