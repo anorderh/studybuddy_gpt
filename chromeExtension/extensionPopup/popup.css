@@ -1,0 +1,111 @@
+html {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center; /*Modify this to 'flex-start' to place at top*/
+    background-color: #3c3c3c;
+}
+
+html * {
+    font-family: Helvetica, serif;
+}
+
+a * {
+    target: "_blank"
+}
+
+/*Title styling*/
+.titleCard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 4px;
+    margin-left: 4px;
+}
+
+.logo {
+    width: 80px;
+
+    display: inline-block;
+    vertical-align: center;
+}
+
+.title {
+    font-size: 40px;
+    font-weight: bold;
+    padding: 4px 4px 0px;
+    color: white;
+
+    display: inline-block;
+    vertical-align: center;
+}
+
+
+.label {
+    font-size: 14px;
+    color: white;
+    text-align: center;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+/* Content styling */
+.content_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 12px 8px;
+}
+
+/*Dynamic container*/
+.action {
+    background-color: darkgray;
+    width: auto;
+    padding: 8px 30px;
+    margin: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 4px;
+
+}
+
+.button {
+    border-radius: 6px;
+    color: #24292E;
+    elevation: 16deg;
+    align-content: center;
+    padding: 6px;
+}
+
+.button:hover {
+    transform: scale(1.05) rotate(-1deg);
+}
+
+.status {
+    font-size: 12px;
+    color: black;
+    text-align: center;
+}
+
+/*Info styling*/
+.greyed-out {
+    text-align: center;
+    font-size: 12px;
+    color: grey;
+    padding: 4px 4px 0px;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    margin: 4px 12px;
+}
+
+.icon:hover {
+    transform: scale(1.05);
+}
+

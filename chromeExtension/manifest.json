@@ -1,0 +1,30 @@
+{
+  "name": "studybuddy",
+  "version": "0.1.0",
+  "description": "GPT-3 powered video comprehension",
+  "permissions": ["storage", "tabs"],
+  "host_permissions": ["https://*.youtube.com/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.youtube.com/*"],
+      "js": ["contentScript.js"],
+      "css": ["contentScript.css"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "sidepanel/sidepanel.html", "sidepanel/http.js"
+      ],
+      "matches": ["https://*.youtube.com/*"]
+    }
+  ],
+  "action": {
+    "default_title": "studybuddy",
+    "default_popup": "extensionPopup/popup.html"
+  },
+  "manifest_version": 3
+}

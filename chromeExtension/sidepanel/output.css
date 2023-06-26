@@ -1,0 +1,85 @@
+/*Info section*/
+#info {
+    text-align: left;
+    font-size: 12px;
+    margin: 4px
+}
+
+.thumbnail {
+    height: 150px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.stats {
+    background-color: #282828;
+    padding: 8px 0px;
+    padding-left: 20px;
+    border-radius: 10px
+}
+
+li {
+    font-size: 16px;
+    margin: 0;
+    padding: 2px;
+}
+
+/*Content section*/
+/*#content {*/
+/*    padding: 16px;*/
+/*    margin: 4px*/
+/*}*/
+
+.headingContainer {
+    background-color: #282828;
+    border-radius: 10px;
+    padding: 4px;
+    margin: 8px;
+}
+
+.timestamp {
+    font-size: 14px;
+    color: #3ea6ff;
+    text-decoration: underline;
+    cursor: pointer;
+    margin: 8px;
+    margin-left: 4px;
+    display: inline-block;
+
+    /*width: 50px*/
+}
+
+.collapsible {
+    font-size: 16px;
+    margin: 0px;
+    cursor: pointer;
+    outline: none;
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
+}
+
+.collapsible::-webkit-scrollbar {
+    display: none;
+}
+
+.collapsible:after {
+    content: '\25B8';
+    color: white;
+    float: left;
+    margin-right: 5px
+}
+
+.active:after {
+    content: '\25BE'
+}
+
+.body {
+    font-size: 14px;
+    padding: 4px;
+    padding-left: 22px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
