@@ -7,6 +7,14 @@ export async function getActiveTab() {
     return tabs[0];
 }
 
+export async function readLocalStorage(key) {
+    return new Promise((resolve, reject) => {
+        chrome.storage.local.get([key], function(res) {
+            resolve(res[key]);
+        });
+    });
+}
+
 // function testHeaders(){
 //     var coll = document.getElementsByClassName("collapsible");
 //     var i;

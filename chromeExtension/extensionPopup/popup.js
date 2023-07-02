@@ -1,19 +1,4 @@
-import {getActiveTab} from "../modules/utils.js";
-
-async function readLocalStorage(key) {
-  return new Promise((resolve, reject) => {
-    chrome.storage.local.get([key], function(res) {
-      resolve(res[key]);
-    });
-  });
-}
-
-function getLoader() {
-  let loader = document.createElement("div");
-  loader.className = "loader";
-
-  return loader;
-}
+import {getActiveTab, readLocalStorage} from "../modules/utils.js";
 
 function getErrorStatus() {
   let errorStatus = document.createElement("b");
@@ -23,23 +8,42 @@ function getErrorStatus() {
   return errorStatus
 }
 
+function getLoader() {
+  let loader = document.createElement("div");
+  loader.className = "loader";
+
+  return loader;
+}
+
 /**
  * Action button
  * @param tab
  * @param container
  * @returns {Promise<HTMLElement>}
  */
-async function initAction(tab, container) {
+async function newTranscriptButton(tab, container) {
   let button = document.createElement("button");
-  button.className = "button"; button.textContent = "Generate notes.";
+  button.className = "button"; button.textContent = "New transcript.";
 
-  // Checking if http request is processing
-  let state = await readLocalStorage("running");
-  console.log(state);
-  if (state != null && state) {
-    alert("inside if statement");
-    return getLoader();
-  }
+  button.addEventListener("click", () => {
+    // Add loader
+    container.innerHTML = "";
+    container.appendChild(getLoader());
+
+    // Set as 'running' & msg content script
+    chrome.storage.local.set({"running": true});
+    chrome.tabs.sendMessage(tab.id, {
+      type: "START",
+      tab: tab
+    });
+  });
+
+  return button;
+}
+
+async function savedTranscriptButton() {
+  let button = document.createElement("button");
+  button.className = "button"; button.textContent = "Use saved transcript.";
 
   button.addEventListener("click", () => {
     // Add loader
@@ -58,7 +62,7 @@ async function initAction(tab, container) {
 }
 
 /**
- * Checking URL and rendering available action (generate vs. 'invalid page')
+ * Checking URL and rendering available action
  */
 document.addEventListener('DOMContentLoaded', async () => {
   let activeTab = await getActiveTab();
@@ -67,13 +71,24 @@ document.addEventListener('DOMContentLoaded', async () => {
   let queryParams = activeURL.split("?")[1];
   let URLparams = new URLSearchParams(queryParams);
   let videoID = URLparams.get("v");
-
   let container = document.getElementById("action");
+  container.innerHTML = ""; // Clear content
 
-  // Rendering dynamic HTML depending on YT link
-  container.innerHTML = "";
+  // Check for valid YT video page
   if (activeURL.includes("youtube.com/watch") && videoID) {
-    container.appendChild(await initAction(activeTab, container));
+    let state = await readLocalStorage("running");
+
+    // Check ongoing state
+    if (state != null && state) {
+      container.appendChild(getLoader());
+    } else {
+      container.appendChild(await newTranscriptButton(activeTab, container));
+
+      // Check for pre-existing transcript
+      if (await readLocalStorage("saved") != null) {
+        container.appendChild(await savedTranscriptButton());
+      }
+    }
   } else {
     container.appendChild(getErrorStatus());
   }

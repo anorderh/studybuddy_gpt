@@ -1,13 +1,13 @@
-let sidepanel; // Extension container
-let iframe; // Content
-let resizer; // Cover tag for resizing
-let youtubePlayer;
+// let sidepanel; // Extension container
+// let iframe; // Content
+// let resizer; // Cover tag for resizing
+// let youtubePlayer;
 
 /**
  * Adding elements to current webpage and grabbing Youtube player
  */
 function init() {
-    console.log("Starting initialization.");
+    alert("initailizing");
 
     // Rendering & adding new DOM elements
     sidepanel = document.createElement("div");
@@ -68,7 +68,7 @@ function initResizerFn( resizer, sidebar ) {
 }
 
 /**
- * For opening and closing container
+ * For opening and closing sidepanel
  */
 function open() {
     sidepanel.style.width = "433px";
@@ -81,13 +81,11 @@ function close() {
 /**
  * Handling extension states and actions (playing timestamp, firing http)
  */
-chrome.runtime.onMessage.addListener(async (obj, sender, response) => {
+chrome.runtime.onMessage.addListener(async (obj, response) => {
     try {
-        const { type, timestamp } = obj;
+        const { type, timestamp} = obj;
 
-        if (type === "LOAD") { // Grab youtube.come/watch?* DOM
-            init();
-        } else if (type === "START") { // Start processing
+        if (type === "START") { // Start processing
             iframe.src = chrome.runtime.getURL("../sidepanel/sidepanel.html");
         } else { // Actions
             if (type === "OPEN") {
@@ -102,3 +100,4 @@ chrome.runtime.onMessage.addListener(async (obj, sender, response) => {
         console.log(e);
     }
 });
+init();

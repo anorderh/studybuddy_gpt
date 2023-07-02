@@ -2,6 +2,7 @@ import {getActiveTab} from "../modules/utils.js";
 import {sendHTTP} from "../modules/http.js";
 
 // Creating sections for sidepanel's content
+let tab;
 
 /**
  * Info related to original token size, shortening cycles, and video
@@ -145,7 +146,7 @@ function linkClose(tabId) {
  * Initialize sidepanel and unfocus external apps
  * @param tab                   current tab
  */
-async function initData(tab, senderID) {
+async function initData(tab) {
     let data = await sendHTTP(tab.url);
     linkClose(tab.id);
 
