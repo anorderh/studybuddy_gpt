@@ -1,7 +1,7 @@
-// let sidepanel; // Extension container
-// let iframe; // Content
-// let resizer; // Cover tag for resizing
-// let youtubePlayer;
+let sidepanel; // Extension container
+let iframe; // Content
+let resizer; // Cover tag for resizing
+let youtubePlayer;
 
 /**
  * Adding elements to current webpage and grabbing Youtube player
@@ -23,11 +23,6 @@ function init() {
 
     // Initializing resizer
     initResizerFn(resizer, sidepanel);
-
-    // Grabbing youtubePlayer
-    console.log("Grabbing YT Player inside init");
-    youtubePlayer = document.getElementsByClassName('video-stream')[0];
-    console.log(youtubePlayer)
 }
 
 /**
@@ -85,9 +80,12 @@ chrome.runtime.onMessage.addListener(async (obj, response) => {
     try {
         const { type, timestamp} = obj;
 
-        if (type === "START") { // Start processing
+        if (type == "GRAB") { // Grabbing youtubePlayer
+            youtubePlayer = document.getElementsByClassName('video-stream')[0];
+            console.log(youtubePlayer)
+        } else if (type === "START") { // Start processing.
             iframe.src = chrome.runtime.getURL("../sidepanel/sidepanel.html");
-        } else { // Actions
+        } else { // Actions.
             if (type === "OPEN") {
                 open();
             } else if (type === "CLOSE") {

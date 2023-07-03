@@ -1,4 +1,4 @@
-import {getActiveTab, readLocalStorage} from "../modules/utils.js";
+import {readLocalStorage} from "../modules/utils.js";
 
 function getErrorStatus() {
   let errorStatus = document.createElement("b");
@@ -34,14 +34,13 @@ async function newTranscriptButton(tab, container) {
     chrome.storage.local.set({"running": true});
     chrome.tabs.sendMessage(tab.id, {
       type: "START",
-      tab: tab
     });
   });
 
   return button;
 }
 
-async function savedTranscriptButton() {
+async function savedTranscriptButton(tab, container, savedData) {
   let button = document.createElement("button");
   button.className = "button"; button.textContent = "Use saved transcript.";
 
@@ -51,10 +50,10 @@ async function savedTranscriptButton() {
     container.appendChild(getLoader());
 
     // Set as 'running' & msg content script
-    chrome.storage.local.set({"running": true});
+    chrome.storage.local.set({["running"]: true});
+    chrome.storage.local.set({"saved": savedData});
     chrome.tabs.sendMessage(tab.id, {
       type: "START",
-      url: tab.url,
     });
   });
 
@@ -65,7 +64,7 @@ async function savedTranscriptButton() {
  * Checking URL and rendering available action
  */
 document.addEventListener('DOMContentLoaded', async () => {
-  let activeTab = await getActiveTab();
+  let activeTab = await readLocalStorage("tab");
   let activeURL = activeTab.url
 
   let queryParams = activeURL.split("?")[1];
@@ -84,9 +83,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     } else {
       container.appendChild(await newTranscriptButton(activeTab, container));
 
-      // Check for pre-existing transcript
-      if (await readLocalStorage("saved") != null) {
-        container.appendChild(await savedTranscriptButton());
+      // Check if video already has generated transcript
+      let transcripts = await readLocalStorage("transcripts");
+      console.log(transcripts);
+      if (transcripts && activeURL in transcripts) {
+        container.appendChild(await savedTranscriptButton(activeTab, container, transcripts[activeURL]));
       }
     }
   } else {

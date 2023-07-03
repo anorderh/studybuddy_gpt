@@ -15,6 +15,10 @@ export async function readLocalStorage(key) {
     });
 }
 
+export async function setLocalStorage(key, value) {
+    await chrome.storage.local.set({[key]: value});
+}
+
 // function testHeaders(){
 //     var coll = document.getElementsByClassName("collapsible");
 //     var i;

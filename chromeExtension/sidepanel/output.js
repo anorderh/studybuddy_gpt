@@ -1,8 +1,8 @@
-import {getActiveTab} from "../modules/utils.js";
+import {readLocalStorage} from "../modules/utils.js";
 import {sendHTTP} from "../modules/http.js";
 
 // Creating sections for sidepanel's content
-let tab;
+let activeTab;
 
 /**
  * Info related to original token size, shortening cycles, and video
@@ -132,43 +132,50 @@ function linkHeader(collapsible) {
     });
 }
 
-function linkClose(tabId) {
+function linkClose() {
     let cancelButton = document.getElementById("close")
 
     cancelButton.addEventListener("click", async function() {
-        chrome.tabs.sendMessage(tabId, {
+        chrome.tabs.sendMessage(activeTab.id, {
             type: "CLOSE"
         });
     });
 }
+linkClose();
 
 /**
  * Initialize sidepanel and unfocus external apps
- * @param tab                   current tab
+ * @param data                  data to be outputted
  */
-async function initData(tab) {
-    let data = await sendHTTP(tab.url);
-    linkClose(tab.id);
-
+function initContent(data) {
     let mainContainer = document.getElementById("output");
     mainContainer.innerHTML = "";
 
     // Adding new content to sidepanel
     mainContainer.appendChild(createInfoSection(data.info));
     mainContainer.appendChild(createOptions());
-    mainContainer.appendChild(createContentSection(tab.id, data.content));
+    mainContainer.appendChild(createContentSection(activeTab.id, data.content));
 
     // Close chrome extension extensionPopup
     chrome.extension.getViews({type: 'popup'}).forEach(v => v.close());
 
     // Open sidepanel
-    chrome.tabs.sendMessage(tab.id, {
+    chrome.tabs.sendMessage(activeTab.id, {
         type: "OPEN",
     });
 }
 
 // Begin initialization when script loaded
 document.addEventListener('DOMContentLoaded', async () => {
-    let activeTab = await getActiveTab();
-    initData(activeTab);
+    activeTab = await readLocalStorage("tab");
+    let data = await readLocalStorage("saved");
+    console.log(data);
+
+    if (data === undefined) { // No saved data sent - request server processing.
+        data = await sendHTTP(activeTab.url);
+        console.log("Initiating new data request...")
+    }
+    initContent(data);
+
+    chrome.storage.local.remove("saved"); // Clearing sent data
 });

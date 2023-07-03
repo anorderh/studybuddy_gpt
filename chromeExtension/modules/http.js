@@ -1,3 +1,5 @@
+import {readLocalStorage, setLocalStorage} from "./utils.js";
+
 export async function sendHTTP(url){
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -15,6 +17,18 @@ export async function sendHTTP(url){
     let output = await response.text();
     output = JSON.parse(output)
 
-    chrome.storage.local.set({"running": false}); // Return state to normal
+    await saveTranscript(url, output); // Save transcript
+    await setLocalStorage("running", false); // Return state to normal
     return output;
+}
+
+async function saveTranscript(url, output) {
+    let transcripts = await readLocalStorage("transcripts");
+
+    if (transcripts === undefined) { // No saved transcripts -- create new ict
+        transcripts = {};
+    }
+
+    transcripts[url] = output;
+    await setLocalStorage("transcripts", transcripts)
 }
