@@ -7,7 +7,7 @@ let youtubePlayer;
  * Adding elements to current webpage and grabbing Youtube player
  */
 function init() {
-    alert("initailizing");
+    // alert("initailizing");
 
     // Rendering & adding new DOM elements
     sidepanel = document.createElement("div");
@@ -80,7 +80,7 @@ chrome.runtime.onMessage.addListener(async (obj, response) => {
     try {
         const { type, timestamp} = obj;
 
-        if (type == "GRAB") { // Grabbing youtubePlayer
+        if (type === "GRAB") { // Grabbing youtubePlayer
             youtubePlayer = document.getElementsByClassName('video-stream')[0];
             console.log(youtubePlayer)
         } else if (type === "START") { // Start processing.

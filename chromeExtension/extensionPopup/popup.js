@@ -1,4 +1,5 @@
-import {readLocalStorage} from "../modules/utils.js";
+import {getActiveTab} from "../modules/utils.js";
+import {readLocalStorage, removeFromStorage, setLocalStorage} from "../modules/storage.js";
 
 function getErrorStatus() {
   let errorStatus = document.createElement("b");
@@ -25,13 +26,13 @@ async function newTranscriptButton(tab, container) {
   let button = document.createElement("button");
   button.className = "button"; button.textContent = "New transcript.";
 
-  button.addEventListener("click", () => {
+  button.addEventListener("click", async () => {
     // Add loader
     container.innerHTML = "";
     container.appendChild(getLoader());
 
     // Set as 'running' & msg content script
-    chrome.storage.local.set({"running": true});
+    await setLocalStorage("running", true);
     chrome.tabs.sendMessage(tab.id, {
       type: "START",
     });
@@ -44,14 +45,14 @@ async function savedTranscriptButton(tab, container, savedData) {
   let button = document.createElement("button");
   button.className = "button"; button.textContent = "Use saved transcript.";
 
-  button.addEventListener("click", () => {
+  button.addEventListener("click", async () => {
     // Add loader
     container.innerHTML = "";
     container.appendChild(getLoader());
 
     // Set as 'running' & msg content script
-    chrome.storage.local.set({["running"]: true});
-    chrome.storage.local.set({"saved": savedData});
+    await setLocalStorage("running", true);
+    await setLocalStorage("saved", savedData);
     chrome.tabs.sendMessage(tab.id, {
       type: "START",
     });
@@ -64,7 +65,7 @@ async function savedTranscriptButton(tab, container, savedData) {
  * Checking URL and rendering available action
  */
 document.addEventListener('DOMContentLoaded', async () => {
-  let activeTab = await readLocalStorage("tab");
+  let activeTab = await getActiveTab();
   let activeURL = activeTab.url
 
   let queryParams = activeURL.split("?")[1];

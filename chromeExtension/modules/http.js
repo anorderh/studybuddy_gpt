@@ -1,9 +1,11 @@
-import {readLocalStorage, setLocalStorage} from "./utils.js";
+import {addToStorageDict, addToStorageList, removeFromStorage, setLocalStorage} from "./storage.js";
 
-export async function sendHTTP(url){
+export async function sendHTTP(url, tabID){
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('Access-Control-Allow-Origin', '*');
+
+    await setLocalStorage("processing", tabID); // Flag tabID as processing
 
     let response = await fetch('http://127.0.0.1:5000/process', {
         signal: AbortSignal.timeout(60000), // 60s timeout
@@ -17,18 +19,12 @@ export async function sendHTTP(url){
     let output = await response.text();
     output = JSON.parse(output)
 
+    await removeFromStorage("processing"); // Remove processing flag
     await saveTranscript(url, output); // Save transcript
     await setLocalStorage("running", false); // Return state to normal
     return output;
 }
 
 async function saveTranscript(url, output) {
-    let transcripts = await readLocalStorage("transcripts");
-
-    if (transcripts === undefined) { // No saved transcripts -- create new ict
-        transcripts = {};
-    }
-
-    transcripts[url] = output;
-    await setLocalStorage("transcripts", transcripts)
+    await addToStorageDict("transcripts", url, output);
 }

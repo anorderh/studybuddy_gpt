@@ -1,4 +1,5 @@
-import {readLocalStorage} from "../modules/utils.js";
+import {getActiveTab} from "../modules/utils.js";
+import {readLocalStorage, removeFromStorage} from "../modules/storage.js";
 import {sendHTTP} from "../modules/http.js";
 
 // Creating sections for sidepanel's content
@@ -167,15 +168,15 @@ function initContent(data) {
 
 // Begin initialization when script loaded
 document.addEventListener('DOMContentLoaded', async () => {
-    activeTab = await readLocalStorage("tab");
+    activeTab = await getActiveTab();
     let data = await readLocalStorage("saved");
     console.log(data);
 
     if (data === undefined) { // No saved data sent - request server processing.
-        data = await sendHTTP(activeTab.url);
+        data = await sendHTTP(activeTab.url, activeTab.id);
         console.log("Initiating new data request...")
     }
     initContent(data);
 
-    chrome.storage.local.remove("saved"); // Clearing sent data
+    await removeFromStorage("saved")
 });
