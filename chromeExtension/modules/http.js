@@ -20,7 +20,6 @@ export async function sendHTTP(url, tabID){
     output = JSON.parse(output)
 
     await removeFromStorage("processing"); // Remove processing flag
-    await saveTranscript(url, output); // Save transcript
     await setLocalStorage("running", false); // Return state to normal
     return output;
 }

@@ -1,6 +1,7 @@
 import {getActiveTab} from "../modules/utils.js";
-import {readLocalStorage, removeFromStorage} from "../modules/storage.js";
+import {addToStorageDict, readLocalStorage, removeFromStorage, setLocalStorage} from "../modules/storage.js";
 import {sendHTTP} from "../modules/http.js";
+import {showDialog} from "../modules/dialog.js";
 
 // Creating sections for sidepanel's content
 let activeTab;
@@ -38,145 +39,129 @@ function createInfoSection(info) {
 }
 
 /**
- * Buttons for saving, exporting, and regenerating output
- * @returns {HTMLDivElement}
- */
-function createOptions() {
-    let options = document.createElement("div");
-    options.className = "optionsBar";
-
-    let buttons = {
-        'Open All': "../assets/box-open.svg",
-        'Save': "../assets/floppy-disk.svg",
-        'Export': "../assets/download.svg",
-        'Settings': "../assets/gear.svg"
-    }
-
-    for (const [key, value] of Object.entries(buttons)) {
-        let button = document.createElement('button');
-        button.className = "option";
-        button.textContent = key;
-
-        let img = document.createElement('img');
-        img.src = value;
-        button.prepend(img);
-        options.appendChild(button);
-    }
-
-    return options
-}
-
-/**
  * List of blocks for each section w/ heading, timestamp, and body
  * @param tabID
  * @param content
  * @returns {HTMLDivElement}
  */
 function createContentSection(tabID, content) {
-    let res = document.createElement('div');
+    let result = document.createElement('div');
 
+    // Creating blocks for each section
     content.forEach((section) => {
-        res.appendChild(createHeadingBlock(tabID, section));
-    })
-    return res;
-}
+        let container = document.createElement('div');
+        container.className = "headingContainer";
 
-function createHeadingBlock(tabID, section) {
-    let container = document.createElement('div');
-    container.className = "headingContainer";
-
-    // timestamp
-    let div = document.createElement("div");
-    let timestamp = document.createElement('p');
-    timestamp.className = "timestamp";
-    timestamp.textContent = new Date(parseInt(section.timestamp) * 1000).toISOString().slice(14, 19);
-    timestamp.addEventListener("click", async function() {
-        chrome.tabs.sendMessage(tabID, {
-            type: "PLAY",
-            timestamp: section.timestamp
+        // timestamp
+        let div = document.createElement("div");
+        let timestamp = document.createElement('p');
+        timestamp.className = "timestamp";
+        timestamp.textContent = new Date(parseInt(section.timestamp) * 1000).toISOString().slice(14, 19);
+        timestamp.addEventListener("click", async function() {
+            chrome.tabs.sendMessage(tabID, {
+                type: "PLAY",
+                timestamp: section.timestamp
+            });
         });
-    });
-    div.appendChild(timestamp)
-    container.appendChild(div);
+        div.appendChild(timestamp)
+        container.appendChild(div);
 
-    // heading
-    let collapsible = document.createElement('button');
-    collapsible.className = "collapsible";
-    collapsible.textContent = section.heading
-    container.appendChild(collapsible);
+        // heading
+        let collapsible = document.createElement('button');
+        collapsible.className = "collapsible";
+        collapsible.textContent = section.heading
+        container.appendChild(collapsible);
 
-    // body
-    let body = document.createElement('div');
-    body.className = "body";
-    let p = document.createElement('p');
-    p.textContent = section.body;
-    body.appendChild(p)
-    container.appendChild(body);
+        // body
+        let body = document.createElement('div');
+        body.className = "body";
+        let p = document.createElement('p');
+        p.textContent = section.body;
+        body.appendChild(p)
+        container.appendChild(body);
 
-    linkHeader(collapsible); // Adding collapsible heading functionality
+        collapsible.addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.maxHeight){
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
 
-    return container;
+        result.appendChild(container);
+    })
+    return result;
 }
 
-/**
- * Adding functionality to buttons (timestamps, close)
- */
-function linkHeader(collapsible) {
-    collapsible.addEventListener("click", function() {
-        this.classList.toggle("active");
-        var content = this.nextElementSibling;
-        if (content.style.maxHeight){
-            content.style.maxHeight = null;
-        } else {
-            content.style.maxHeight = content.scrollHeight + "px";
-        }
-    });
-}
+function initTaskbar(data) {
+    let dialog = document.getElementById("popout");
 
-function linkClose() {
     let cancelButton = document.getElementById("close")
-
     cancelButton.addEventListener("click", async function() {
         chrome.tabs.sendMessage(activeTab.id, {
             type: "CLOSE"
         });
     });
+
+    let regenButton = document.getElementById("regen")
+    regenButton.addEventListener("click", async function() {
+        await setLocalStorage("running", true);
+        chrome.tabs.sendMessage(activeTab.id, {
+            type: "CLOSE"
+        });
+        let data = await sendHTTP(activeTab.url, activeTab.id);
+        initContent(data);
+    });
+
+    let saveButton = document.getElementById("save")
+    saveButton.addEventListener("click", async function() {
+        console.log("save button pressed!");
+        showDialog(dialog, "Saved!");
+        await addToStorageDict("transcripts", activeTab.url, data);
+    });
+
+    // settingsButton placeholder -- implement later.
+    let settingsButton = document.getElementById("settings");
+    settingsButton.addEventListener("click", async function() {
+        console.log("settings button pressed!");
+        showDialog(dialog, "Settings", data.info)
+    })
 }
-linkClose();
 
 /**
  * Initialize sidepanel and unfocus external apps
  * @param data                  data to be outputted
  */
 function initContent(data) {
-    let mainContainer = document.getElementById("output");
-    mainContainer.innerHTML = "";
+    let thumbnailCover = document.getElementById("tbCover");
+    let output = document.getElementById("output");
+    thumbnailCover.innerHTML = ""; output.innerHTML = "";
 
     // Adding new content to sidepanel
-    mainContainer.appendChild(createInfoSection(data.info));
-    mainContainer.appendChild(createOptions());
-    mainContainer.appendChild(createContentSection(activeTab.id, data.content));
+    thumbnailCover.appendChild(createInfoSection(data.info));
+    output.appendChild(createContentSection(activeTab.id, data.content));
 
-    // Close chrome extension extensionPopup
+    initTaskbar(data);
+
     chrome.extension.getViews({type: 'popup'}).forEach(v => v.close());
-
-    // Open sidepanel
-    chrome.tabs.sendMessage(activeTab.id, {
+    chrome.tabs.sendMessage(activeTab.id, { // Open sidepanel
         type: "OPEN",
     });
 }
 
-// Begin initialization when script loaded
+// Fires when script loaded
 document.addEventListener('DOMContentLoaded', async () => {
     activeTab = await getActiveTab();
-    let data = await readLocalStorage("saved");
-    console.log(data);
 
-    if (data === undefined) { // No saved data sent - request server processing.
+    // Grab data -- if undefined, request server for processing
+    let data = await readLocalStorage("saved");
+    if (data === undefined) {
         data = await sendHTTP(activeTab.url, activeTab.id);
         console.log("Initiating new data request...")
     }
     initContent(data);
 
-    await removeFromStorage("saved")
+    await removeFromStorage("saved"); // Clear for subsequent tasks
 });

@@ -1,42 +1,88 @@
-.optionsBar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.toolbar {
+    margin: 8px 2px;
+    margin-right: 8px
 }
 
-.option {
-    height: 30px;
-    width: 25%;
+.icon {
+    display: inline-block;
+    height: 16px;
+    opacity: 1;
+    filter: invert(99%) sepia(11%) saturate(113%) hue-rotate(311deg) brightness(114%) contrast(89%)
+}
 
-    align-items: center;
-    justify-content: center;
-
-    background-color: #282828;
-    border-radius: 20px;
-    border-width: 0px;
-    display: flex;
-    font-size: 14px;
+.icon-wrap {
+    display: inline-flex;
+    transition: background-color 0.25s;
+    float: right;
+    height: 2em;
+    width: 2em;
+    padding: 0.25em;
     margin: 0px 4px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-wrap:hover {
+    background-color: rgba(255, 255, 255, .15);
     cursor: pointer;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-    transition-duration: 0.1s;
-    padding: 4px 10px;
-
-    color: #808080;
-    overflow: hidden
 }
 
-.option:hover {
-    filter: brightness(125%);
-    color: #f1f1f1;
+#close {
+    float: left;
+}
+#close > img {
+    scale: 1.2
 }
 
-.option:hover > img {
-    filter: invert(100%) sepia(6%) saturate(435%) hue-rotate(199deg) brightness(113%) contrast(89%)
+#logo > img {
+    scale: 1.5;
+    filter: none
+}
+#logo.icon-wrap:hover {
+    background-color: #212121;
+    cursor: default
 }
 
-.option > img {
-    margin-right: 6px;
-    height: 12px;
-    filter: invert(38%) sepia(92%) saturate(0%) hue-rotate(210deg) brightness(110%) contrast(83%)
-}
+/*.optionsBar {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*}*/
+
+/*.option {*/
+/*    height: 30px;*/
+/*    width: 25%;*/
+
+/*    align-items: center;*/
+/*    justify-content: center;*/
+
+/*    background-color: #282828;*/
+/*    border-radius: 20px;*/
+/*    border-width: 0px;*/
+/*    display: flex;*/
+/*    font-size: 14px;*/
+/*    margin: 0px 4px;*/
+/*    cursor: pointer;*/
+/*    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);*/
+/*    transition-duration: 0.1s;*/
+/*    padding: 4px 10px;*/
+
+/*    color: #808080;*/
+/*    overflow: hidden*/
+/*}*/
+
+/*.option:hover {*/
+/*    filter: brightness(125%);*/
+/*    color: #f1f1f1;*/
+/*}*/
+
+/*.option:hover > img {*/
+/*    filter: invert(100%) sepia(6%) saturate(435%) hue-rotate(199deg) brightness(113%) contrast(89%)*/
+/*}*/
+
+/*.option > img {*/
+/*    margin-right: 6px;*/
+/*    height: 12px;*/
+/*    filter: invert(38%) sepia(92%) saturate(0%) hue-rotate(210deg) brightness(110%) contrast(83%)*/
+/*}*/

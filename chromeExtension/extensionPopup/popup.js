@@ -46,12 +46,7 @@ async function savedTranscriptButton(tab, container, savedData) {
   button.className = "button"; button.textContent = "Use saved transcript.";
 
   button.addEventListener("click", async () => {
-    // Add loader
-    container.innerHTML = "";
-    container.appendChild(getLoader());
-
-    // Set as 'running' & msg content script
-    await setLocalStorage("running", true);
+    // Set as 'saved'' & msg content script
     await setLocalStorage("saved", savedData);
     chrome.tabs.sendMessage(tab.id, {
       type: "START",

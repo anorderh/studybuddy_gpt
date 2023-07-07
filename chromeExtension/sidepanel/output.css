@@ -2,14 +2,12 @@
 #info {
     text-align: left;
     font-size: 12px;
-    margin: 4px
 }
 
 .thumbnail {
     height: 150px;
     width: 100%;
     object-fit: cover;
-    border-radius: 10px;
 }
 
 .stats {
@@ -25,17 +23,11 @@ li {
     padding: 2px;
 }
 
-/*Content section*/
-/*#content {*/
-/*    padding: 16px;*/
-/*    margin: 4px*/
-/*}*/
-
 .headingContainer {
     background-color: #282828;
     border-radius: 10px;
     padding: 4px;
-    margin: 8px;
+    margin: 16px 10px;
 }
 
 .timestamp {

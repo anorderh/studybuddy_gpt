@@ -9,10 +9,29 @@
     <script type="module" src="../modules/http.js"></script>
 </head>
 <body>
-    <div class="toolbar">
-        <img id="close" class="icon" src="../assets/xmark-solid.svg">
-        <img id="logo" class="icon" src="../assets/logo.jpeg">
+    <div id="backdrop">
+        <dialog id="popout"></dialog>
     </div>
+    <div class="toolbar">
+        <div id="close" class="icon-wrap">
+            <img class="icon" src="../assets/xmark-solid.svg">
+        </div>
+
+        <!--Utility options-->
+        <div id="logo" class="icon-wrap">
+            <img class="icon" src="../assets/logo.jpeg">
+        </div>
+        <div id="settings" class="icon-wrap">
+            <img class="icon" src="../assets/gear-solid.svg">
+        </div>
+        <div id="save" class="icon-wrap">
+            <img class="icon" src="../assets/floppy-disk-solid.svg">
+        </div>
+        <div id="regen" class="icon-wrap">
+            <img class="icon" src="../assets/arrows-rotate-solid.svg">
+        </div>
+    </div>
+    <div id="tbCover"></div>
     <div id="output"></div>
 </body>
 </html>
