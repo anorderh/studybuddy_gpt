@@ -1,4 +1,4 @@
-export function showDialog(modal, heading, body) {
+export function showDialog(modal, heading, content) {
     let backdrop = document.getElementById("backdrop");
     modal.innerHTML = ""; // Clear content
 
@@ -7,13 +7,9 @@ export function showDialog(modal, heading, body) {
     h.textContent = heading;
     modal.appendChild(h);
 
-    // Body non-null, so info passed
-    if (body != null) {
-        let settings = document.createElement('div');
-        settings.id = "settings";
-
-        settings.textContent = JSON.stringify(body);
-        modal.appendChild(b);
+    // Check if body is valid
+    if (content != null) {
+        modal.appendChild(content);
     }
 
     modal.showModal();

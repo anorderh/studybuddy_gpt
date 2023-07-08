@@ -49,8 +49,4 @@ export async function removeFromStorageDict(key, innerKey, value) {
     delete dict[innerKey];
 
     await setLocalStorage(key, dict);
-
-
-
-
 }

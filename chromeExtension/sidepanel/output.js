@@ -2,6 +2,7 @@ import {getActiveTab} from "../modules/utils.js";
 import {addToStorageDict, readLocalStorage, removeFromStorage, setLocalStorage} from "../modules/storage.js";
 import {sendHTTP} from "../modules/http.js";
 import {showDialog} from "../modules/dialog.js";
+import {deriveSettings} from "../modules/settings.js";
 
 // Creating sections for sidepanel's content
 let activeTab;
@@ -126,7 +127,7 @@ function initTaskbar(data) {
     let settingsButton = document.getElementById("settings");
     settingsButton.addEventListener("click", async function() {
         console.log("settings button pressed!");
-        showDialog(dialog, "Settings", data.info)
+        showDialog(dialog, "Settings", deriveSettings(data))
     })
 }
 

@@ -49,7 +49,8 @@ def run_job(URL):
                   'thumbnailURL': job.thumbnail_url,
                   'timeElapsed': str((end - start).total_seconds()),
                   'shorteningCycles': job.shortening_cycles,
-                  'wordCount': [job.orig_word_count, job.word_count]},
+                  'origWordCount': job.orig_word_count,
+                  'finalWordCount': job.word_count},
         content=sections
     )
     return res
