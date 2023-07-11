@@ -1,4 +1,5 @@
 import {jsPDF} from "./jspdf.es.js"
+import {getActiveTab} from "./utils.js";
 
 export function deriveSettings(data) {
     let settings = document.createElement("div");
@@ -13,9 +14,9 @@ export function deriveSettings(data) {
 
     exportButton.appendChild(exportIcon);
     exportButton.appendChild(exportLabel);
-    exportButton.addEventListener("click", function() {
+    exportButton.addEventListener("click", async function() {
         console.log("export button pressed!");
-        exportToPDF(data);
+        exportPDF(data);
     });
 
     // Create black box with all information pulled from backend
@@ -56,39 +57,97 @@ function formatVideoInfo(info) {
     return output;
 }
 
-function exportToPDF(data) {
+async function exportPDF(data) {
     // Currently deciding between base jsPDF implementation or HTML-PDF using html2canvas
-
     let options = {
-        orientation: "portaiot",
-        unit: "pt",
+        orientation: "portrait",
+        unit: "in",
         format: "a4"
-    }
+    } // A4, W = 8.25, H = 11.75
     let doc = new jsPDF(options);
     doc.setTextColor(0); // black
+    doc.setLineWidth(1 / 72); // ppi
+    doc.setFont('arial');
+    console.log(doc.getFontList());
+    let docInfo = {
+        width: 8.25,
+        height: 11.75,
+        vOffset: 0.5,
+        hOffset: 0.5,
+        pages: 1,
+        heightLeft: 10.75
+    }
+    // let URIs = await grabDataURIs(data);
+    // console.log(URIs);
+    // URIs.forEach((URI) => {
+    //     doc.addImage(URI, 'JPEG', 0, 0, 1.78, 1);
+    // });
 
-    writeTitle(doc, data.info.title);
+    writeTitle(data.info.title, doc, docInfo);
     for (let section of data.content) {
-        writeHeading(doc, section.heading);
-        writeBody(doc, section.body);
+        writeHeading(section.heading, doc, docInfo);
+        writeBody(section.body, doc, docInfo);
     }
 
     doc.save(`${data.info.title} StudyBuddyGPT Notes.pdf`);
 }
 
-function writeTitle(doc, title) {
-    doc.setLineWidth(3);
-    doc.setFontSize(30);
-    doc.text(title, 15, 15, {maxWidth: "400"})
-}
-function writeHeading(doc, heading) {
-    doc.setLineWidth(3);
-    doc.setFontSize(24);
-    doc.text(heading, 15, 15, {maxWidth: "400"});
+function writeTitle(title, doc, info) {
+    let titleFS = 30;
+    let textlines = doc.setFontSize(titleFS)
+        .setFont(undefined, 'bold')
+        .splitTextToSize(title, 7.25);
+    let size = (textlines.length + 0.5) * titleFS / 72;
+    checkPageWrapping(size, doc, info);
+
+    doc.text(info.width/2, info.vOffset + titleFS / 72, textlines, 'center')
+    info.vOffset += size;
 }
 
-function writeBody(doc, body) {
-    doc.setLineWidth(1);
-    doc.setFontSize(12);
-    doc.text(body, 15, 15, {maxWidth: "400"});
+function writeHeading(heading, doc, info) {
+    let headingFS = 24;
+    let textlines = doc.setFontSize(headingFS)
+        .setFont(undefined, 'normal')
+        .splitTextToSize(heading, 7.25);
+    let size = (textlines.length + 0.5) * headingFS / 72;
+    checkPageWrapping(size, doc, info);
+
+    doc.text(info.hOffset, info.vOffset + headingFS / 72, textlines)
+    info.vOffset += size;
+}
+
+function writeBody(body, doc, info) {
+    let bodyFS = 12;
+    let textlines = doc.setFontSize(bodyFS)
+        .setFont(undefined, 'normal')
+        .splitTextToSize(body, 7.25);
+    let size = (textlines.length + 0.5) * bodyFS / 72;
+    checkPageWrapping(size, doc, info);
+
+    doc.text(info.hOffset, info.vOffset + bodyFS / 72, textlines)
+    info.vOffset += size;
+}
+
+function checkPageWrapping(size, doc, info) {
+    if (size >= info.heightLeft) { // Overflow found -> new page!
+        doc.addPage();
+
+        // reset vOffset & repopulate heightLeft
+        info.vOffset = 0.5;
+        info.heightLeft = info.height - (info.vOffset*2);
+    }
+    info.heightLeft -= size;
+}
+
+async function grabDataURIs(data) {
+    let activeTab = await getActiveTab();
+
+    // Grabbing URIs
+    let timestamps = data.content.map(section => section.timestamp)
+    let URIs = await chrome.tabs.sendMessage(activeTab.id, {
+        type: "SNAPSHOTS",
+        timestamps: timestamps
+    });
+
+    return URIs;
 }

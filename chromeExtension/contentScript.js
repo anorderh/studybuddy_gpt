@@ -2,6 +2,7 @@ let sidepanel; // Extension container
 let iframe; // Content
 let resizer; // Cover tag for resizing
 let youtubePlayer;
+let canvas; // For drawing 2D images
 
 /**
  * Adding elements to current webpage and grabbing Youtube player
@@ -16,6 +17,9 @@ function init() {
     iframe.className = "iframe";
     resizer = document.createElement("div");
     resizer.className = "resizer";
+
+    // Members for extracting data
+    canvas = document.createElement('canvas');
 
     sidepanel.appendChild(resizer);
     sidepanel.appendChild(iframe);
@@ -61,6 +65,34 @@ function initResizerFn( resizer, sidebar ) {
 
     resizer.addEventListener("mousedown", rs_mousedownHandler);
 }
+/*
+ * For grabbing screenshot of video, as data URI
+ */
+async function getVideoSnapshots(timestamps) {
+    let URIs = [];
+
+    for (let ts of timestamps) {
+        youtubePlayer.currentTime = ts;
+        await sleep(1000); // Pause for loading HTML video
+
+        // Save image as URI
+        let canvas = document.createElement('canvas');
+        canvas.width = 960; canvas.height = 540;
+        let ctx = canvas.getContext('2d');
+        ctx.drawImage(youtubePlayer, 0, 0, canvas.width, canvas.height);
+        let uri = canvas.toDataURL('image/jpeg', 1.0);
+
+        URIs.push(uri);
+    }
+
+    return URIs
+}
+
+function sleep(ms) {
+    return new Promise(
+        resolve => setTimeout(resolve, ms)
+    );
+}
 
 /**
  * For opening and closing sidepanel
@@ -76,9 +108,13 @@ function close() {
 /**
  * Handling extension states and actions (playing timestamp, firing http)
  */
-chrome.runtime.onMessage.addListener(async (obj, response) => {
+chrome.runtime.onMessage.addListener((obj, sender, sendResponse) => {
     try {
-        const { type, timestamp} = obj;
+        const {
+            type, // Action identifier
+            timestamp, // For changing video time
+            timestamps // For grabbing video snapshots
+        } = obj;
 
         if (type === "GRAB") { // Grabbing youtubePlayer
             youtubePlayer = document.getElementsByClassName('video-stream')[0];
@@ -92,6 +128,17 @@ chrome.runtime.onMessage.addListener(async (obj, response) => {
                 close();
             } else if (type === "PLAY") {
                 youtubePlayer.currentTime = timestamp;
+                console.log(timestamp);
+            } else if (type === "SNAPSHOTS") {
+                (async () => {
+                    let origTime = youtubePlayer.currentTime;
+                    let URIs = await getVideoSnapshots(timestamps);
+                    youtubePlayer.currentTime = origTime;
+
+                    sendResponse(URIs);
+                })();
+
+                return true; // Asynch response desired
             }
         }
     } catch (e) {
