@@ -58,85 +58,132 @@ function formatVideoInfo(info) {
 }
 
 async function exportPDF(data) {
-    // Currently deciding between base jsPDF implementation or HTML-PDF using html2canvas
     let options = {
         orientation: "portrait",
         unit: "in",
-        format: "a4"
-    } // A4, W = 8.25, H = 11.75
+        format: [8.5, 11]
+    } // A4, W = 8.5, H = 11
     let doc = new jsPDF(options);
     doc.setTextColor(0); // black
     doc.setLineWidth(1 / 72); // ppi
-    doc.setFont('arial');
+    doc.setFont('Times');
     console.log(doc.getFontList());
     let docInfo = {
-        width: 8.25,
-        height: 11.75,
-        vOffset: 0.5,
-        hOffset: 0.5,
+        width: 8.5, height: 11,
+        vOffset: 1, hOffset: 1,
         pages: 1,
-        heightLeft: 10.75
+        heightLeft: 9,
+        imgLoc: "left", imgHeight: 1.687, imgWidth: 3,
+        hPadding: 0.15,
     }
-    // let URIs = await grabDataURIs(data);
-    // console.log(URIs);
-    // URIs.forEach((URI) => {
-    //     doc.addImage(URI, 'JPEG', 0, 0, 1.78, 1);
-    // });
 
+    // Getting snapshots for each section
+    let URIs = await grabDataURIs(data);
+    console.log(URIs);
+
+    // Rendering PDF sections
     writeTitle(data.info.title, doc, docInfo);
-    for (let section of data.content) {
-        writeHeading(section.heading, doc, docInfo);
-        writeBody(section.body, doc, docInfo);
+    for (let i = 0; i < data.content.length; i++) {
+        writeHeading(data.content[i].heading, doc, docInfo);
+        if (i%3 === 0) {
+            writeBodyWithImage(data.content[i].body, URIs[i], doc, docInfo)
+        } else {
+            writeBody(data.content[i].body, doc, docInfo);
+        }
     }
+    // for (let section of data.content) {
+    //     writeHeading(section.heading, doc, docInfo);
+    //     writeBody(section.body, doc, docInfo);
+    // }
 
     doc.save(`${data.info.title} StudyBuddyGPT Notes.pdf`);
 }
 
 function writeTitle(title, doc, info) {
-    let titleFS = 30;
+    let titleFS = 24;
+    let PPI = 72; // pixels per inch
     let textlines = doc.setFontSize(titleFS)
         .setFont(undefined, 'bold')
-        .splitTextToSize(title, 7.25);
-    let size = (textlines.length + 0.5) * titleFS / 72;
+        .splitTextToSize(title, info.width - (2*info.hOffset));
+    let size = (textlines.length + 0.5) * titleFS / PPI;
     checkPageWrapping(size, doc, info);
 
-    doc.text(info.width/2, info.vOffset + titleFS / 72, textlines, 'center')
+    doc.text(info.width/2, info.vOffset + titleFS / PPI, textlines, 'center')
     info.vOffset += size;
 }
 
 function writeHeading(heading, doc, info) {
-    let headingFS = 24;
+    let headingFS = 16;
+    let PPI = 72; // pixels per inch
     let textlines = doc.setFontSize(headingFS)
         .setFont(undefined, 'normal')
-        .splitTextToSize(heading, 7.25);
-    let size = (textlines.length + 0.5) * headingFS / 72;
+        .splitTextToSize(heading, info.width - (2*info.hOffset));
+    let size = (textlines.length + 0.5) * headingFS / PPI;
     checkPageWrapping(size, doc, info);
 
-    doc.text(info.hOffset, info.vOffset + headingFS / 72, textlines)
+    doc.text(info.hOffset, info.vOffset + headingFS / PPI, textlines)
     info.vOffset += size;
 }
 
 function writeBody(body, doc, info) {
     let bodyFS = 12;
+    let PPI = 72; // pixels per inch
     let textlines = doc.setFontSize(bodyFS)
         .setFont(undefined, 'normal')
-        .splitTextToSize(body, 7.25);
-    let size = (textlines.length + 0.5) * bodyFS / 72;
+        .splitTextToSize(body, info.width - (2*info.hOffset));
+    let size = (textlines.length + 0.5) * bodyFS / PPI;
     checkPageWrapping(size, doc, info);
 
-    doc.text(info.hOffset, info.vOffset + bodyFS / 72, textlines)
+    doc.text(info.hOffset, info.vOffset + bodyFS / PPI, textlines)
     info.vOffset += size;
 }
 
-function checkPageWrapping(size, doc, info) {
-    if (size >= info.heightLeft) { // Overflow found -> new page!
+function writeBodyWithImage(body, URI, doc, info) {
+    let bodyFS = 12;
+    let PPI = 72; // pixels per inch
+    let textlines = doc.setFontSize(bodyFS)
+        .setFont(undefined, 'normal')
+        .splitTextToSize(body, info.width - (2*info.hOffset) - info.imgWidth - info.hPadding);
+    let size = (textlines.length + 0.5) * bodyFS / PPI;
+    let imgSize = info.imgHeight + (2 * bodyFS / PPI)
+    checkPageWrapping(size, doc, info, true, imgSize);
+
+    // Determining text & img horizontal offset
+    let textHoriOffset; let imgHoriOffset;
+    if (info.imgLoc === "right") {
+        textHoriOffset = info.hOffset;
+        imgHoriOffset = info.width - info.hOffset - info.imgWidth;
+        info.imgLoc = "left";
+    } else {
+        textHoriOffset = info.hOffset + info.imgWidth + info.hPadding;
+        imgHoriOffset = info.hOffset
+        info.imgLoc = "right";
+    }
+
+    // Adding section img
+    doc.addImage(URI,
+        'JPEG',
+        imgHoriOffset,
+        info.vOffset + bodyFS / PPI,
+        info.imgWidth,
+        info.imgHeight);
+
+    doc.text(textHoriOffset, info.vOffset + bodyFS / PPI, textlines)
+    info.vOffset += size > imgSize ? size : imgSize;
+}
+
+function checkPageWrapping(size, doc, info, img=false, imgSize=null) {
+    // Check for overflow from text (AND img, if present)
+    if (size > info.heightLeft || (img && info.imgHeight > info.heightLeft)) { // Overflow found -> new page!
         doc.addPage();
 
         // reset vOffset & repopulate heightLeft
-        info.vOffset = 0.5;
+        info.vOffset = 1;
         info.heightLeft = info.height - (info.vOffset*2);
     }
-    info.heightLeft -= size;
+
+    // Reduce height - if img present, factor imgHeight
+    info.heightLeft -= (img ? Math.max(size, imgSize) : size);
 }
 
 async function grabDataURIs(data) {
