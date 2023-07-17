@@ -46,11 +46,12 @@ def run_job(URL):
     end = datetime.datetime.now();
     res = Result(
         info={'title': job.title,
-                  'thumbnailURL': job.thumbnail_url,
-                  'timeElapsed': str((end - start).total_seconds()),
-                  'shorteningCycles': job.shortening_cycles,
-                  'origWordCount': job.orig_word_count,
-                  'finalWordCount': job.word_count},
+              'URL': job.url,
+              'timeElapsed': str((end - start).total_seconds()),
+              'shorteningCycles': job.shortening_cycles,
+              'origWordCount': job.orig_word_count,
+              'finalWordCount': job.word_count,
+              'thumbnailURL': job.thumbnail_url},
         content=sections
     )
     return res
@@ -59,6 +60,7 @@ def run_job(URL):
     # # Stage 5 - Generating markdown file based on parsed output
     # print("5 - Generating markdown file...")  # Stage 5
     # md_filename = p_d.generate_markdown(job, sections)
+
 
 @app.route("/process", methods=['POST', 'OPTIONS'])
 @cross_origin(origin='chrome-extension://*')

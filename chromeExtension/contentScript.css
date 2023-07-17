@@ -7,7 +7,7 @@
     right: 0;
     z-index: 9000000000000000000;
     background-color: #212121;
-    box-shadow: -4px 0 4px #000000;
+    box-shadow: 0 0 8px #000000;
 }
 
 /*!* Hide scrollbar for Chrome, Safari and Opera *!*/

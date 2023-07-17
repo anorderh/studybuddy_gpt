@@ -68,24 +68,17 @@ function initResizerFn( resizer, sidebar ) {
 /*
  * For grabbing screenshot of video, as data URI
  */
-async function getVideoSnapshots(timestamps) {
-    let URIs = [];
+async function getSnapshot(timestamp) {
+    youtubePlayer.currentTime = timestamp;
+    await sleep(1000); // Pause for loading HTML video
 
-    for (let ts of timestamps) {
-        youtubePlayer.currentTime = ts;
-        await sleep(1000); // Pause for loading HTML video
+    // Render image & save as data uri
+    let canvas = document.createElement('canvas');
+    canvas.width = 960; canvas.height = 540;
+    let ctx = canvas.getContext('2d');
+    ctx.drawImage(youtubePlayer, 0, 0, canvas.width, canvas.height);
 
-        // Save image as URI
-        let canvas = document.createElement('canvas');
-        canvas.width = 960; canvas.height = 540;
-        let ctx = canvas.getContext('2d');
-        ctx.drawImage(youtubePlayer, 0, 0, canvas.width, canvas.height);
-        let uri = canvas.toDataURL('image/jpeg', 1.0);
-
-        URIs.push(uri);
-    }
-
-    return URIs
+    return canvas.toDataURL('image/jpeg', 1.0);
 }
 
 function sleep(ms) {
@@ -112,8 +105,7 @@ chrome.runtime.onMessage.addListener((obj, sender, sendResponse) => {
     try {
         const {
             type, // Action identifier
-            timestamp, // For changing video time
-            timestamps // For grabbing video snapshots
+            timestamp,
         } = obj;
 
         if (type === "GRAB") { // Grabbing youtubePlayer
@@ -129,13 +121,9 @@ chrome.runtime.onMessage.addListener((obj, sender, sendResponse) => {
             } else if (type === "PLAY") {
                 youtubePlayer.currentTime = timestamp;
                 console.log(timestamp);
-            } else if (type === "SNAPSHOTS") {
+            } else if (type === "SNAPSHOT") {
                 (async () => {
-                    let origTime = youtubePlayer.currentTime;
-                    let URIs = await getVideoSnapshots(timestamps);
-                    youtubePlayer.currentTime = origTime;
-
-                    sendResponse(URIs);
+                    sendResponse(await getSnapshot(timestamp));
                 })();
 
                 return true; // Asynch response desired

@@ -3,12 +3,14 @@
  * @author Lea Verou
  */
 
+import "./marked/marked.min.js"
+
 let marked = window.marked;
 let DOMPurify = window.DOMPurify;
 let Prism = window.Prism;
 
 export const URLs = {
-	marked: "https://cdn.jsdelivr.net/npm/marked/src/marked.min.js",
+	// marked: "./marked/marked.min.js" // Can't download due to Chrome CSP policy,
 	DOMPurify: "https://cdn.jsdelivr.net/npm/dompurify@2.3.3/dist/purify.es.min.js"
 }
 

@@ -24,9 +24,22 @@ def find_headings(text):
 
     i = 0
     while i < len(text):
-        if text[i-1] == "#" and text[i] == ' ': # Ending hash
-            indices.append(i+1) # Ignore space at start
+        if text[i-1] == "#" and text[i] == ' ':  # Ending hash
+            indices.append(i+1)  # Ignore space at start
         i += 1
+
+    return indices
+
+def find_all(text, value):
+    """ retrieves newlines' indices """
+    indices = []
+    i = text.find(value)
+
+    # While text's end has not been reached
+    while i != -1:
+        print(i)
+        indices.append(i)
+        i = text.find(value, i+1)  # Find next char
 
     return indices
 

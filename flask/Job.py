@@ -36,6 +36,7 @@ class Job:
         self.word_count = len(text.split())
 
     def set_gpt_output(self, gpt_output):
+        print(gpt_output)
         self.gpt_output = gpt_output
 
     def set_markdown(self, markdown):

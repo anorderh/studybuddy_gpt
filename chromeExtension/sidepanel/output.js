@@ -76,7 +76,7 @@ function createContentSection(tabID, content) {
         // body
         let body = document.createElement('div');
         body.className = "body";
-        let p = document.createElement('p');
+        let p = document.createElement('md-block');
         p.textContent = section.body;
         body.appendChild(p)
         container.appendChild(body);
