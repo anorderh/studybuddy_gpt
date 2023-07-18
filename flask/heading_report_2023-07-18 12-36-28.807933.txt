@@ -1,0 +1,40 @@
+game console reviews
+Matched with "oh"
+Score: 11.350705494341822
+Timestamp: 405.18
+
+introduction
+Matched with "absolutely"
+Score: 10.811071621518021
+Timestamp: 431.52
+
+console 1: aliexpress console
+Matched with "oh"
+Score: 10.165599596135555
+Timestamp: 405.18
+
+console 2: game station 5
+Matched with "um"
+Score: 10.24423313429058
+Timestamp: 297.0
+
+console 3: arcade box
+Matched with "absolutely"
+Score: 10.292508033107268
+Timestamp: 431.52
+
+console 4: hyper base fc metro gaming console
+Matched with "oh"
+Score: 10.612311484775088
+Timestamp: 405.18
+
+console 5: super console x pro
+Matched with "babes"
+Score: 9.852466114460281
+Timestamp: 669.54
+
+conclusion
+Matched with "oh"
+Score: 11.16691935441922
+Timestamp: 405.18
+

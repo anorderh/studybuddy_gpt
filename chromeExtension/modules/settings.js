@@ -2,6 +2,8 @@ import {jsPDF} from "./jspdf.es.js"
 import {getActiveTab, countInstances} from "./utils.js";
 import "./showdown/showdown.js";
 
+let converter = new window.showdown.Converter();
+
 export function deriveSettings(data) {
     let settings = document.createElement("div");
 
@@ -18,10 +20,7 @@ export function deriveSettings(data) {
     exportButton.addEventListener("click", async function() {
         console.log("export button pressed!");
 
-        // let example = new showdown.Converter();
-        // console.log(example)
-        console.log(window.showdown);
-        // exportPDF(data);
+        exportPDF(data);
     });
 
     // Create black box with all information pulled from backend
@@ -189,11 +188,6 @@ function writeHeading(heading, doc, info) {
 }
 
 function write(stanza, doc, info) {
-    // let textlines = doc.setFontSize(FS)
-    //     .setFont(undefined, 'normal')
-    //     .splitTextToSize(stanza, info.width - (2*info.hOffset));
-
-
     let FS = 12;
     let PPI = 72; // pixels per inch
     let textlines = doc.setFontSize(FS)

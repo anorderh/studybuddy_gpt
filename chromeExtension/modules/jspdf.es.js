@@ -50,7 +50,8 @@
 
 import  { _typeof } from './babel/typeof.js';
 import { zlibSync, unzlibSync } from './fflate/browser.js';
-import * as html2canvas from './html2canvas.js'
+import * as html2canvas from './html2canvas.js';
+import * as dompurify from './dompurify/purify.js';
 
 var globalObject = function () {
   return "undefined" !== typeof window ? window : "undefined" !== typeof global ? global : "undefined" !== typeof self ? self : this;
@@ -14843,7 +14844,7 @@ function parseFontFamily(input) {
         return Promise.resolve(globalObject["DOMPurify"]);
       }
 
-      return import('dompurify');
+      return new Promise(() => {return dompurify});
     }().catch(function (e) {
       return Promise.reject(new Error("Could not load dompurify: " + e));
     }).then(function (dompurify) {

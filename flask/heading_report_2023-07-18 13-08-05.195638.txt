@@ -1,0 +1,20 @@
+transcript markdown file
+Matched with "no clip mod"
+Score: 0.26842811703681946
+Timestamp: 219.599
+
+introduction
+Matched with "um"
+Score: 0.5530434846878052
+Timestamp: 297.0
+
+console review
+Matched with "it's a console oh"
+Score: 0.7727582454681396
+Timestamp: 663.66
+
+conclusion
+Matched with "um"
+Score: 0.557874858379364
+Timestamp: 297.0
+
