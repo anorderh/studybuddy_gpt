@@ -31,7 +31,7 @@ def run_job(URL):
 
     print("Initializing job members...")
     start = datetime.datetime.now()
-    job = Job(URL, False)  # Boolean for debug mode
+    job = Job(URL)  # Boolean for debug mode
 
     print("Stage 1 - Shortening transcript to fit GPT-3 token limit")
     p_s.shorten_transcript(job)
@@ -54,6 +54,10 @@ def run_job(URL):
               'thumbnailURL': job.thumbnail_url},
         content=sections
     )
+
+    # print("Stage 5 - (DEBUG) Generating local markdown file...")
+    # md_filename = p_d.generate_markdown(job, sections)
+
     return res
     # h.output_py_objs(sections)
 

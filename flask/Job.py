@@ -1,14 +1,35 @@
 import tiktoken
-import datetime
 from pytube import YouTube
 from youtube_transcript_api import YouTubeTranscriptApi
+
+
+def condense_transcript(transcript_obj, scale):
+    size = len(transcript_obj)
+    new_transcript = []
+
+    for i in range(0, size, scale):
+        stop = None
+        if i+scale >= size:
+            stop = size
+        else:
+            stop = i+scale
+
+        joined_phrase = " ".join([entry["text"] for entry in transcript_obj[i:stop]])
+        avg_time = sum([int(entry["start"]) for entry in transcript_obj[i:stop]])//(stop-i)
+
+        new_transcript.append({
+            "text": joined_phrase,
+            "start": avg_time
+        })
+
+    return new_transcript
+
 
 class Job:
     tokenizer = tiktoken.encoding_for_model("gpt-3.5-turbo")  # OpenAI Tokenizer
 
-    def __init__(self, URL, debug):
+    def __init__(self, URL):
         self.url = URL
-        self.debug = debug
 
         # metadata
         self.title = None
@@ -50,29 +71,25 @@ class Job:
 
     def load_yt_video(self):
         """ grab YT video transcript and length """
-        start = None
-
         yt = YouTube(self.url)
         self.title = yt.title
         self.video_id = yt.video_id
         self.thumbnail_url = yt.thumbnail_url
 
-        if self.debug:  # Transcript req - start
-            start = datetime.datetime.now()
-
         transcript_obj = YouTubeTranscriptApi.get_transcript(self.video_id)
 
-        if self.debug:  # Transcript req - end
-            end = datetime.datetime.now()
-            print(f"downloading yt: {str((end - start).total_seconds())}")
+        # "\n" adjoining necessary for shortening
+        raw_text = "\n".join([entry['text'] for entry in transcript_obj])
+        # condensing transcript into 1/3 objects for more accurate timestamp retrieval
+        self.transcript = condense_transcript(transcript_obj, 2)
 
-        self.transcript = transcript_obj
-        raw_transcript = "\n".join([entry['text'] for entry in transcript_obj])
-        self.set_text(raw_transcript)
-
+        self.set_text(raw_text)
         self.orig_word_count = self.word_count
 
         # # Example setting markdown, for headings test
         # f = open("example_markdown.md", "r")
         # job.set_markdown(f.read())
         # f.close()
+
+
+

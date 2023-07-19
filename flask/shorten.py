@@ -5,8 +5,6 @@ MAX_TOKEN_SIZE = 2048 - 10 # 10 is buffer between local 'Tiktoken' tokenizer & C
 
 def shorten_transcript(job):
     start = None
-    if job.debug: # Shortening transcript - start
-        start = datetime.datetime.now()
     iterations = 0
 
     """ shortens input until it fits into token size boundaries """
@@ -38,7 +36,3 @@ def shorten_transcript(job):
         iterations += 1
 
     job.shortening_cycles = iterations
-
-    if job.debug:  # Shortening transcript - end
-        end = datetime.datetime.now()
-        print(f"shortening trans: {str((end - start).total_seconds())}")

@@ -23,9 +23,9 @@ def get_sections(gpt_output, transcript):
         end = gpt_output.find("\n", idx)
         next_hash = gpt_output.find("#", end)
 
-        heading = gpt_output[idx:end]
-        body = gpt_output[end + 1:next_hash].strip()  # Remove trailing whitespace
-        timestamp = int(h.find_mention(heading, transcript))
+        heading = gpt_output[idx:end].strip()
+        body = gpt_output[end+1:next_hash].strip()  # Remove trailing whitespace
+        timestamp = int(h.find_mention(heading, transcript)["start"])
 
         if body != "":
             # Filter out empty sections
@@ -34,18 +34,18 @@ def get_sections(gpt_output, transcript):
     for s in sections:  # Debug
         print(s.__dict__)
 
-    return modify_newlines_sections(sections)
+    return filter_content(sections)
 
 
-def modify_newlines_sections(sections):
+def filter_content(sections):
     for section in sections:
-        b = section.body
-        indices = h.find_all(b, "\n")
+        heading = section.heading.lower()
+        # Set summary section timestamps to 0
+        if any([word in heading for word in ["review", "intro", "markdown", "overview", "comprehensive"]]):
+            section.timestamp = "0"
 
-        for i in indices:
-            # Converting all '\n' occurrences into '\n\n', excluding '\n\n'
-            if b[i + 1] != "\n" and b[i-1] != "\n":
-                section.body = b[:i] + "\n" + b[i:]
+        # Remove markdown symbols
+        section.body.replace("-", " ")
 
     return sections
 
@@ -63,9 +63,9 @@ def generate_markdown(job, sections):
 
         # Find time & generate new heading w/ URL
         new_heading = f"# [{heading}]({h.get_timestamp_URL(job, timestamp)})"
-        md += new_heading + "\n" + body
+        md += new_heading + "\n" + body + "\n\n"
 
-    f = open(f'{filename}.md', "w")
+    f = open(f'output/{filename}.md', "w")
     f.write(md)
     f.close()
 

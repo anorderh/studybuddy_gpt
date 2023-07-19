@@ -4,8 +4,6 @@ import openai
 # Stage 3 - Use ChatGPT to generate Markdown syntax
 def generate_gpt_output(job, title=None):
     start = None
-    if job.debug:  # GPT processing - start
-        start = datetime.datetime.now() # DEBUG -- TIME START
 
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
@@ -20,7 +18,3 @@ def generate_gpt_output(job, title=None):
     )
 
     job.set_gpt_output(response['choices'][0]['message']['content'] + "\n\n")
-
-    if job.debug:  # Shortening transcript - end:
-        end = datetime.datetime.now()
-        print(f"making gpt request: {str((end - start).total_seconds())}")
