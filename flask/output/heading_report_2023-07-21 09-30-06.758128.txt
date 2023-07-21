@@ -1,0 +1,64 @@
+AI News Roundup
+Matched with "week one AI Tech that can change the entire entertainment industry and two AI"
+Timestamp: 313
+
+AI Research Capable of Generating Complete South Park Episodes
+Matched with "capable of generating a complete South Park episode has been published showing"
+Timestamp: 13
+
+Advancements in Llama 2 Language Models
+Matched with "llama 2 for language models is literally on the same level as back when stable"
+Timestamp: 195
+
+Open Source Release of Llama 2 Models
+Matched with "language models yes llama 2 has been officially released with zero warning"
+Timestamp: 110
+
+Hyper Dream Booth: A Revolutionary Training Technique
+Matched with "definitely the research called hyper dream Booth if the quality and the"
+Timestamp: 239
+
+Introduction of Metal's Multi-Modal Language Model
+Matched with "multi-modal a language model it's called chameleon and what's novel about this is"
+Timestamp: 331
+
+Flash Attention and Retentive Network: Speed and Efficiency Improvements
+Matched with "flash attention too a method 1.7 times to three times faster compared to its"
+Timestamp: 494
+
+Copy is All You Need: Generating Novel Text
+Matched with "next tokens why don't we just copy and paste from existing text it's kind of"
+Timestamp: 573
+
+LLM News Bonus: Image and Video Generation
+Matched with "before we end this video here is the bonus segment of image and video"
+Timestamp: 848
+
+Nintendo Switch, PS3, GameCube, and Wii Emulation
+Matched with "switch PS3 GameCube and Wii and more let's get started"
+Timestamp: 5
+
+GameCube and Wii Emulation with Dolphin
+Matched with "about GameCube and Wii emulation with dolphin and as a brief history lesson"
+Timestamp: 13
+
+Nintendo Switch Emulation with Ryu Jinx
+Matched with "we're talking about Nintendo switch emulation with Ryu Jinx and Ryu Jinx got"
+Timestamp: 273
+
+PlayStation 3 Emulation with RPCS3
+Matched with "about great things next up we're talking about PlayStation 3 emulation with rpcs3"
+Timestamp: 301
+
+FPGA Development for Dreamcast
+Matched with "this news apparently Dreamcast fpga is in development although it's going to"
+Timestamp: 329
+
+The Retroid Pocket 2s Announcement
+Matched with "checking it out next up we're talking about the newly announced retroid pocket"
+Timestamp: 349
+
+Gran Turismo: The Movie
+Matched with "quality next up here we're talking about Gran Turismo the movie based on the game"
+Timestamp: 408
+

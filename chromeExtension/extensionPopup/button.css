@@ -1,0 +1,31 @@
+.icon {
+    margin: 0px 10px;
+    height: 16px;
+    opacity: 1;
+    filter: invert(99%) sepia(11%) saturate(113%) hue-rotate(311deg) brightness(114%) contrast(89%)
+}
+
+.icon-wrap {
+    display: inline-flex;
+    transition: background-color 0.25s;
+    padding: 0.5em;
+    margin: 4px;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.icon-wrap:hover {
+    background-color: rgba(255, 255, 255, .15);
+    cursor: pointer;
+}
+
+.icon-wrap.no-hover:hover {
+    transition: none;
+    background-color: transparent;
+    cursor: default;
+}
+
+.icon-wrap > div {
+    font-size: 14px;
+}

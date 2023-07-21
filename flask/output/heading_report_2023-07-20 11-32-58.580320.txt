@@ -1,0 +1,192 @@
+The Code Report - July 20th, 2023
+Matched with "it is July 20th 2023 and you're watching the code report I'm old enough to"
+Timestamp: 1
+
+The Changing Face of AI Language Models
+Matched with "llama 2 a new family of large language models released by meta in a surprise"
+Timestamp: 25
+
+Introducing Llama 2: A New Language Model
+Matched with "llama 2 a new family of large language models released by meta in a surprise"
+Timestamp: 25
+
+Comparing GPT4, Google's AI Tool, and Llama 2
+Matched with "to gpt4 as well as the new generative AI Tool in Google search I gave all three"
+Timestamp: 63
+
+Llama 2: A Safer and More Transparent Model
+Matched with "comes to actual benchmarks on other open source models llama 2 is likely the best"
+Timestamp: 105
+
+Performance Analysis and Insights
+Matched with "performance of Chach EBT varies over time when it comes to code generation"
+Timestamp: 146
+
+The Controversial Llama 2 Response
+Matched with "provided additional context and links to the web and then finally the Llama 2"
+Timestamp: 80
+
+Conclusion
+Matched with "response was the most verbose and well written overall but the more you use it"
+Timestamp: 84
+
+Asus Ally vs Steam Deck: A Detailed Comparison
+Matched with "So you might have came to the
+same conclusion that I did, the Ally is like a Steam Deck but more,"
+Timestamp: 66
+
+Device Overview
+Matched with "making the experience way easier for us. So I've been bouncing
+between the two devices"
+Timestamp: 100
+
+Performance and Compatibility
+Matched with "or if it doesn't run good, if it's gonna impede my performance"
+Timestamp: 328
+
+Versatility and Game Options
+Matched with "Where I used to get all of my games on the switch for its versatility,"
+Timestamp: 217
+
+User Experience and Interface
+Matched with "on one of these things
+on a gaming handheld, imagine navigating your MySpace
+page with the thumb sticks."
+Timestamp: 667
+
+Gaming Preferences and Considerations
+Matched with "Developers want that great on-deck badge, so they make sure that their
+games are optimized as such,"
+Timestamp: 94
+
+Conclusion
+Matched with "so case closed, problem solved,
+it's gotta be better, right? But it's not quite that simple"
+Timestamp: 72
+
+Introduction
+Matched with "tools like mid-journey you can check out the course I just launched The Ultimate"
+Timestamp: 596
+
+Limitations
+Matched with "now I do want to show that there are limitations what I'd like to do is"
+Timestamp: 473
+
+Example 1: Image Analysis
+Matched with "upload a different image this time this is another image I generated using"
+Timestamp: 221
+
+Example 2: Color Palette Generation
+Matched with "the generated color palette looks pretty good to me here's the color palette it"
+Timestamp: 286
+
+Example 3: Weather Data Analysis
+Matched with "analysis comparing climates finding extreme"
+Timestamp: 445
+
+Interactive Plot Limitations
+Matched with "will likely tell me I can't do that because it can't make interactive plots"
+Timestamp: 501
+
+Conclusion
+Matched with "around the face that it identified let's try another simple example I'm going to"
+Timestamp: 217
+
+Asus Ally vs Steam Deck: A Comprehensive Comparison
+Matched with "The Ally is at minimum a $700-device, and the Steam Deck by comparison"
+Timestamp: 29
+
+Factors to Consider
+Matched with "for various games and use cases. I figured it was worth mentioning why,"
+Timestamp: 105
+
+Steam Deck vs Asus Ally: A Detailed Comparison
+Matched with "The Ally is at minimum a $700-device, and the Steam Deck by comparison"
+Timestamp: 29
+
+Gaming Experience
+Matched with "some of my physical games from my PS5 in the living room on a handheld."
+Timestamp: 430
+
+Asus Ally vs. Steam Deck: A Comprehensive Comparison
+Matched with "what has me picking up the Steam Deck over the Ally, and vice versa?"
+Timestamp: 110
+
+Introduction
+Matched with "it just boots, and it runs,
+and everything's great. Unless you wanna run around
+in the 3D environments,"
+Timestamp: 253
+
+Price and Value
+Matched with "in convenient and affordable formats with products ranging
+from $2 to $4 per serving."
+Timestamp: 164
+
+Gaming Experience
+Matched with "some of my physical games from my PS5 in the living room on a handheld."
+Timestamp: 430
+
+Developer Support
+Matched with "surrounding the Ally at launch. And the controversy was that
+there was a software update"
+Timestamp: 294
+
+Versatility
+Matched with "Where I used to get all of my games on the switch for its versatility,"
+Timestamp: 217
+
+Performance and Updates
+Matched with "I will say that part of these updates was a boost in fan speed,
+which was noticeable"
+Timestamp: 339
+
+Noise Levels
+Matched with "it's still not that loud, but it's definitely louder than
+it was in my initial review,"
+Timestamp: 396
+
+Remote Play Support
+Matched with "I just wish there was some
+sort of remote play support because I would love to be able to play"
+Timestamp: 425
+
+Game Pass Integration
+Matched with "can play Game Pass
+games through streaming, although it's a little bit easier"
+Timestamp: 542
+
+Desktop Mode
+Matched with "without ever having to
+open that desktop mode. On the ORG Ally, the Windows desktop"
+Timestamp: 608
+
+Full Blown Desktop Experience
+Matched with "with the Windows desktop, at least when you set the thing up."
+Timestamp: 618
+
+Ease of Use
+Matched with "Anyway, it works all right. It's better than nothing,
+but it's a lot easier"
+Timestamp: 488
+
+Console vs. PC Feel
+Matched with "because the added value that
+the Steam Deck has is that it's that PC experience,
+but in a hassle-free,"
+Timestamp: 78
+
+Compatibility with Games
+Matched with "Developers want that great on-deck badge, so they make sure that their
+games are optimized as such,"
+Timestamp: 94
+
+Final Thoughts
+Matched with "Oh. What'd you think I was gonna do?"
+Timestamp: 155
+
+Conclusion
+Matched with "so case closed, problem solved,
+it's gotta be better, right? But it's not quite that simple"
+Timestamp: 72
+

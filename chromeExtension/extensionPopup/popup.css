@@ -3,11 +3,18 @@ html {
     display: flex;
     justify-content: center;
     align-items: center; /*Modify this to 'flex-start' to place at top*/
-    background-color: #3c3c3c;
+    background-color: rgb(33, 33, 33);
 }
 
 html * {
     font-family: Helvetica, serif;
+    color: #f1f1f1;
+}
+
+body {
+    margin: 0px;
+    padding: 10px;
+    padding-bottom: 15px;
 }
 
 a * {
@@ -23,21 +30,32 @@ a * {
     margin-left: 4px;
 }
 
+.logoContainer {
+    position: relative;
+}
+
 .logo {
     width: 80px;
 
     display: inline-block;
-    vertical-align: center;
+    margin-right: 4px;
+}
+
+#error {
+    position: absolute;
+    height: 24px;
+    right: 16px;
+    bottom: 8px;
+    margin: 0px;
+
+    opacity: 1;
+    filter: invert(86%) sepia(27%) saturate(3469%) hue-rotate(4deg) brightness(100%) contrast(98%)
 }
 
 .title {
     font-size: 40px;
     font-weight: bold;
-    padding: 4px 4px 0px;
     color: white;
-
-    display: inline-block;
-    vertical-align: center;
 }
 
 
@@ -47,65 +65,50 @@ a * {
     text-align: center;
     margin-top: 6px;
     margin-bottom: 6px;
+    text-wrap: nowrap;
 }
 
 /* Content styling */
-.content_container {
+.statusContainer {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    padding: 12px 8px;
+    height: 36px;
 }
 
 /*Dynamic container*/
 .action {
-    background-color: darkgray;
-    width: auto;
-    padding: 8px 30px;
+    background-color: #282828;
+    padding: 8px;
+    /*min-height: 24px;*/
+    height: fit-content;
     margin: 4px;
-    display: flex;
-    justify-content: center;
+    /*display: flex;*/
+    /*justify-content: space-around;*/
     align-items: center;
 
     border-radius: 4px;
 
 }
 
-.button {
-    border-radius: 6px;
-    color: #24292E;
-    elevation: 16deg;
-    align-content: center;
-    padding: 6px;
+.status {
+    font-size: 12px;
+    color: #828282;
 }
 
 .button:hover {
     transform: scale(1.05) rotate(-1deg);
 }
 
-.status {
-    font-size: 12px;
-    color: black;
-    text-align: center;
-}
-
-/*Info styling*/
-.greyed-out {
-    text-align: center;
-    font-size: 12px;
-    color: grey;
-    padding: 4px 4px 0px;
-}
-
-.icon {
-    width: 24px;
-    height: 24px;
-    margin: 4px 12px;
-}
-
 .icon:hover {
     transform: scale(1.05);
+}
+
+#version {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 4px;
 }
 

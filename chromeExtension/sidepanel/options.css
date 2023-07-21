@@ -28,6 +28,12 @@
     cursor: pointer;
 }
 
+.icon-wrap.no-hover:hover {
+    transition: none;
+    background-color: transparent;
+    cursor: default;
+}
+
 #close {
     float: left;
 }
@@ -45,20 +51,36 @@
     cursor: default
 }
 
-#export {
+.optionsContainer {
     display: flex;
+    justify-content: space-evenly;
+}
+
+.option {
     height: auto;
-    width: 80px;
+    width: fit-content;
     border-radius: 10px;
-
-    float: none;
-    justify-content: space-around;
-
     margin: 4px;
     padding: 0 10px;
 }
 
-#infoContainer {
+.option > img {
+    scale: 1.2;
+    margin-right: 4px
+}
+
+.option > p {
+    transform: translateX(2px);
+}
+
+.greyed-out {
+    text-align: center;
+    font-size: 12px;
+    color: #828282;
+    padding: 4px 4px 0px;
+}
+
+#infoBox {
     font-family: "Courier New", serif;
     background-color: #0f0f0f;
     padding: 4px 8px;

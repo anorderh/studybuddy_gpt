@@ -1,16 +1,23 @@
 import {getActiveTab} from "../modules/utils.js";
 import {readLocalStorage, removeFromStorage, setLocalStorage} from "../modules/storage.js";
 
+let versionNum = "0.1"
+
 function getErrorStatus() {
+  let container = document.createElement("div")
+  container.className = "statusContainer";
+
   let errorStatus = document.createElement("b");
-  errorStatus.textContent = "Not a valid Youtube video page.";
+  errorStatus.textContent = "Navigate to a YouTube video page.";
   errorStatus.className = "status";
 
-  return errorStatus
+  container.appendChild(errorStatus)
+
+  return container
 }
 
 function getLoader() {
-  let loader = document.createElement("div");
+  let loader = document.createElement("span");
   loader.className = "loader";
 
   return loader;
@@ -23,8 +30,15 @@ function getLoader() {
  * @returns {Promise<HTMLElement>}
  */
 async function newTranscriptButton(tab, container) {
-  let button = document.createElement("button");
-  button.className = "button"; button.textContent = "New transcript.";
+  let button = document.createElement("div");
+  button.id = "convert"; button.className = "icon-wrap"
+  let img = document.createElement("img")
+  img.className = "icon"; img.src = "../assets/pen-solid.svg";
+  let label = document.createElement("div")
+  label.textContent = "New document"
+
+  button.appendChild(img);
+  button.appendChild(label);
 
   button.addEventListener("click", async () => {
     // Add loader
@@ -42,8 +56,15 @@ async function newTranscriptButton(tab, container) {
 }
 
 async function savedTranscriptButton(tab, container, savedData) {
-  let button = document.createElement("button");
-  button.className = "button"; button.textContent = "Use saved transcript.";
+  let button = document.createElement("div");
+  button.id = "useSaved"; button.className = "icon-wrap"
+  let img = document.createElement("img")
+  img.className = "icon"; img.src = "../assets/file-arrow-up-solid.svg";
+  let label = document.createElement("div")
+  label.textContent = "Use saved document"
+
+  button.appendChild(img);
+  button.appendChild(label);
 
   button.addEventListener("click", async () => {
     // Set as 'saved'' & msg content script
@@ -63,14 +84,19 @@ document.addEventListener('DOMContentLoaded', async () => {
   let activeTab = await getActiveTab();
   let activeURL = activeTab.url
 
+  let version = document.getElementById("version")
+  version.textContent = `v. ${versionNum}`;
+
   let queryParams = activeURL.split("?")[1];
   let URLparams = new URLSearchParams(queryParams);
   let videoID = URLparams.get("v");
   let container = document.getElementById("action");
+  let errorSymbol = document.getElementById("error")
   container.innerHTML = ""; // Clear content
 
   // Check for valid YT video page
   if (activeURL.includes("youtube.com/watch") && videoID) {
+    errorSymbol.style.display = "none"
     let state = await readLocalStorage("running");
 
     // Check ongoing state
@@ -87,6 +113,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     }
   } else {
+    errorSymbol.style.display = "block"
     container.appendChild(getErrorStatus());
   }
 });

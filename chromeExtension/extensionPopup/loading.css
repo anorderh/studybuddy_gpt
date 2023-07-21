@@ -5,20 +5,32 @@
 }
 
 .loader {
-    border: 4px solid #f3f3f3; /* Light grey */
-    border-top: 4px solid #d91616; /* Red */
-    border-radius: 50%;
-    width: 24px;
-    height: 24px;
-    animation: spin 1.5s linear infinite;
+    width: 100%;
+    height: 4.8px;
+    display: inline-block;
+    position: relative;
+    background: rgba(255, 255, 255, 0.15);
+    overflow: hidden;
+}
+.loader::after {
+    content: '';
+    width: 192px;
+    height: 4.8px;
+    background: #bf1e1d;
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    animation: animloader 2s linear infinite;
 }
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.hint {
-    font-size: 12px;
-    color: grey
+@keyframes animloader {
+    0% {
+        left: 0;
+        transform: translateX(-100%);
+    }
+    100% {
+        left: 100%;
+        transform: translateX(0%);
+    }
 }

@@ -15,11 +15,11 @@ def condense_transcript(transcript_obj, scale):
             stop = i+scale
 
         joined_phrase = " ".join([entry["text"] for entry in transcript_obj[i:stop]])
-        avg_time = sum([int(entry["start"]) for entry in transcript_obj[i:stop]])//(stop-i)
+        smallest_time = transcript_obj[i]["start"]
 
         new_transcript.append({
             "text": joined_phrase,
-            "start": avg_time
+            "start": smallest_time
         })
 
     return new_transcript

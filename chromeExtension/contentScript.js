@@ -98,6 +98,28 @@ function close() {
     sidepanel.style.width = "0px";
 }
 
+// window.addEventListener('locationchange', function () {
+//     console.log("location changed!");
+// });
+//
+// window.addEventListener('hashchange', function () {
+//     // let url = document.location.href;
+//     //
+//     // if (tab.url.includes("youtube.com/watch")) { // Valid YT video page
+//     //     chrome.tabs.sendMessage(tabId, {
+//     //         type: "GRAB"
+//     //     });
+//     // }
+//     console.log("hash changed!");
+// });
+//
+// window.onhashchange = () => {console.log("hashchanged!")};
+// window.onpopstate = () => {console.log("state popped!")};
+// window.addEventListener("popstate", function () {
+//     alert("hehehe");
+//     console.log("state popped!");
+// });
+
 /**
  * Handling extension states and actions (playing timestamp, firing http)
  */
