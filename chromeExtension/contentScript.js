@@ -1,3 +1,5 @@
+
+// Global members
 let sidepanel; // Extension container
 let iframe; // Content
 let resizer; // Cover tag for resizing
@@ -18,15 +20,46 @@ function init() {
     resizer = document.createElement("div");
     resizer.className = "resizer";
 
-    // Members for extracting data
-    canvas = document.createElement('canvas');
-
     sidepanel.appendChild(resizer);
     sidepanel.appendChild(iframe);
     document.body.append(sidepanel);
 
-    // Initializing resizer
+    // Members for extracting data
+    canvas = document.createElement('canvas');
+
+    // Resizable sidepanel
     initResizerFn(resizer, sidepanel);
+
+    // Once new URL loaded...
+    // - Grab YouTube player element if available
+    window.onload = () => {
+        queryPerURL(getYoutubePlayer);
+    }
+}
+
+function queryPerURL(callback) {
+    callback();
+    alert("loaded");
+
+    let oldHref = document.location.href;
+    const body = document.querySelector("body");
+    const observer = new MutationObserver(mutations => {
+        if (oldHref !== document.location.href) {
+            alert("URL changed!");
+            oldHref = document.location.href
+
+            callback()
+        }
+    });
+    observer.observe(body, { childList: true, subtree: true });
+}
+
+function getYoutubePlayer() {
+    if (document.location.href.includes("youtube.com/watch")) {
+        alert("Player grabbed!");
+        youtubePlayer = document.getElementsByClassName('video-stream')[0];
+        console.log(youtubePlayer)
+    }
 }
 
 /**
@@ -98,27 +131,28 @@ function close() {
     sidepanel.style.width = "0px";
 }
 
-// window.addEventListener('locationchange', function () {
-//     console.log("location changed!");
-// });
+// function expand() {
+//     open();
 //
-// window.addEventListener('hashchange', function () {
-//     // let url = document.location.href;
-//     //
-//     // if (tab.url.includes("youtube.com/watch")) { // Valid YT video page
-//     //     chrome.tabs.sendMessage(tabId, {
-//     //         type: "GRAB"
-//     //     });
-//     // }
-//     console.log("hash changed!");
-// });
+//     chrome.runtime.sendMessage({
+//         popup: "enable"
+//     })
 //
-// window.onhashchange = () => {console.log("hashchanged!")};
-// window.onpopstate = () => {console.log("state popped!")};
-// window.addEventListener("popstate", function () {
-//     alert("hehehe");
-//     console.log("state popped!");
-// });
+//     chrome.browserAction.onClicked.removeListener(open);
+//     chrome.browserAction.setPopup("extensionPopup/popup.html");
+// }
+//
+// function minimize() {
+//     close();
+//
+//     chrome.runtime.sendMessage({
+//         popup: "disable"
+//     })
+//
+//
+//     chrome.browserAction.setPopup('');
+//     chrome.browserAction.onClicked.addListener(expand);
+// }
 
 /**
  * Handling extension states and actions (playing timestamp, firing http)
@@ -130,10 +164,7 @@ chrome.runtime.onMessage.addListener((obj, sender, sendResponse) => {
             timestamp,
         } = obj;
 
-        if (type === "GRAB") { // Grabbing youtubePlayer
-            youtubePlayer = document.getElementsByClassName('video-stream')[0];
-            console.log(youtubePlayer)
-        } else if (type === "START") { // Start processing.
+        if (type === "START") { // Start processing.
             iframe.src = chrome.runtime.getURL("../sidepanel/sidepanel.html");
         } else { // Actions.
             if (type === "OPEN") {

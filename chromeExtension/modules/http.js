@@ -23,7 +23,3 @@ export async function sendHTTP(url, tabID){
     await setLocalStorage("running", false); // Return state to normal
     return output;
 }
-
-async function saveTranscript(url, output) {
-    await addToStorageDict("transcripts", url, output);
-}

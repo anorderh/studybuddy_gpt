@@ -18,7 +18,8 @@
   "web_accessible_resources": [
     {
       "resources": [
-        "sidepanel/sidepanel.html", "sidepanel/http.js"
+        "sidepanel/sidepanel.html",
+        "sidepanel/http.js"
       ],
       "matches": ["https://*.youtube.com/*"]
     }

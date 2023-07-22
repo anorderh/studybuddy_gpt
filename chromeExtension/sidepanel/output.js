@@ -106,6 +106,26 @@ function initTaskbar(data) {
         });
     });
 
+    let miniButton = document.getElementById("mini")
+    miniButton.addEventListener("click", async function() {
+        // to be implemented
+    });
+
+    let openAllButton = document.getElementById("openAll")
+    openAllButton.addEventListener("click", async function() {
+        let state = openAllButton.classList.toggle("active");
+
+        for (let collapsible of document.getElementsByClassName("collapsible")){
+            var content = collapsible.nextElementSibling;
+            collapsible.classList.toggle("active", state);
+            if (state) {
+                content.style.maxHeight = content.scrollHeight + "px";
+            } else {
+                content.style.maxHeight = null
+            }
+        }
+    });
+
     let regenButton = document.getElementById("regen")
     regenButton.addEventListener("click", async function() {
         await setLocalStorage("running", true);
