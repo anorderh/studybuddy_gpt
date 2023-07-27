@@ -115,7 +115,7 @@ function writeHeading(heading, doc, info) {
     let headingFS = 16;
     let PPI = 72; // pixels per inch
     let textlines = doc.setFontSize(headingFS)
-        .setFont(undefined, 'normal')
+        .setFont(undefined, 'bold')
         .splitTextToSize(heading, info.width - (2*info.hOffset));
     let size = (textlines.length + 0.5) * headingFS / PPI + info.padding;
     checkPageWrapping(size, doc, info);

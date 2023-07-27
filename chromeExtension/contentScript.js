@@ -33,19 +33,19 @@ function init() {
     // Once new URL loaded...
     // - Grab YouTube player element if available
     window.onload = () => {
+        // alert("window loaded");
         queryPerURL(getYoutubePlayer);
     }
 }
 
 function queryPerURL(callback) {
     callback();
-    alert("loaded");
 
     let oldHref = document.location.href;
     const body = document.querySelector("body");
-    const observer = new MutationObserver(mutations => {
+
+    const observer = new MutationObserver(mutations => {// alert("fired");
         if (oldHref !== document.location.href) {
-            alert("URL changed!");
             oldHref = document.location.href
 
             callback()

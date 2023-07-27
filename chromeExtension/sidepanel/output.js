@@ -3,16 +3,100 @@ import {addToStorageDict, readLocalStorage, removeFromStorage, setLocalStorage} 
 import {sendHTTP} from "../modules/http.js";
 import {showDialog} from "../modules/dialog.js";
 import {deriveSettings} from "../modules/settings.js";
+import {getButton} from "./toolbar.js";
 
 // Creating sections for sidepanel's content
 let activeTab;
+
+async function initSidepanel(data) {
+    initToolbar(data);
+    initContent(data);
+
+    chrome.extension.getViews({type: 'popup'}).forEach(v => v.close());
+    chrome.tabs.sendMessage(activeTab.id, { // Open sidepanel
+        type: "OPEN",
+    });
+
+    await removeFromStorage("saved"); // Clear for subsequent tasks
+}
+
+function initToolbar(data) {
+    let toolbar = document.getElementById("toolbar");
+    toolbar.innerHTML = "";
+    let dialog = document.getElementById("popout");
+
+    let close = getButton("close", true, async function() {
+        chrome.tabs.sendMessage(activeTab.id, {
+            type: "CLOSE"
+        });
+    });
+    let minimize = getButton("mini", true, async function() {
+        // to be implemented
+    });
+    let openAll = getButton("openAll", false, async function() {
+        let state = openAll.classList.toggle("active");
+
+        for (let collapsible of document.getElementsByClassName("collapsible")){
+            let content = collapsible.nextElementSibling;
+            collapsible.classList.toggle("active", state);
+            if (state) {
+                content.style.maxHeight = content.scrollHeight + "px";
+            } else {
+                content.style.maxHeight = null
+            }
+        }
+    });
+    let regen = getButton("regen", false, async function() {
+        await setLocalStorage("running", true);
+        chrome.tabs.sendMessage(activeTab.id, {
+            type: "CLOSE"
+        });
+        let data = await sendHTTP(activeTab.url, activeTab.id);
+        await initSidepanel(data);
+    });
+    let save = getButton("save", false, async function() {
+        console.log("save button pressed!");
+        showDialog(dialog, "Saved!");
+        await addToStorageDict("transcripts", activeTab.url, data);
+    });
+    let settings = getButton("settings", false, async function() {
+        console.log("settings button pressed!");
+        showDialog(dialog, "Settings", deriveSettings(data))
+    });
+    let logo = getButton("logo", false);
+
+    // left side
+    toolbar.appendChild(close);
+    toolbar.appendChild(minimize);
+
+    // right side
+    toolbar.appendChild(logo);
+    toolbar.appendChild(settings);
+    toolbar.appendChild(save);
+    toolbar.appendChild(regen);
+    toolbar.appendChild(openAll);
+}
+
+/**
+ * Initialize sidepanel and unfocus external apps
+ * @param data                  data to be outputted
+ */
+function initContent(data) {
+    let thumbnailCover = document.getElementById("tbCover");
+    let output = document.getElementById("output");
+    thumbnailCover.innerHTML = ""; output.innerHTML = "";
+
+    // Adding new content to sidepanel
+    thumbnailCover.appendChild(createHeader(data.info));
+    output.appendChild(createBody(activeTab.id, data.content));
+}
 
 /**
  * Info related to original token size, shortening cycles, and video
  * @param info
  * @returns {HTMLDivElement}
  */
-function createInfoSection(info) {
+function createHeader(info) {
     let container = document.createElement("div");
     container.id = "info"
 
@@ -20,21 +104,6 @@ function createInfoSection(info) {
     thumbnail.className = "thumbnail";
     thumbnail.src = info.thumbnailURL;
     container.appendChild(thumbnail);
-
-    // let stats = document.createElement("ul");
-    // stats.className = "stats";
-    // let infoTexts = [
-    //     `Generated in ${info.timeElapsed} s`,
-    //     `Original transcript length: ${info.wordCount[0]} words`,
-    //     `Shortened ${info.shorteningCycles} times to ${info.wordCount[1]} words`
-    // ];
-    // infoTexts.forEach((text) => {
-    //     let info = document.createElement("li");
-    //     info.className = "info";
-    //     info.textContent = text;
-    //     stats.appendChild(info);
-    // });
-    // container.appendChild(stats);
 
     return container
 }
@@ -45,7 +114,7 @@ function createInfoSection(info) {
  * @param content
  * @returns {HTMLDivElement}
  */
-function createContentSection(tabID, content) {
+function createBody(tabID, content) {
     let result = document.createElement('div');
 
     // Creating blocks for each section
@@ -96,82 +165,6 @@ function createContentSection(tabID, content) {
     return result;
 }
 
-function initTaskbar(data) {
-    let dialog = document.getElementById("popout");
-
-    let cancelButton = document.getElementById("close")
-    cancelButton.addEventListener("click", async function() {
-        chrome.tabs.sendMessage(activeTab.id, {
-            type: "CLOSE"
-        });
-    });
-
-    let miniButton = document.getElementById("mini")
-    miniButton.addEventListener("click", async function() {
-        // to be implemented
-    });
-
-    let openAllButton = document.getElementById("openAll")
-    openAllButton.addEventListener("click", async function() {
-        let state = openAllButton.classList.toggle("active");
-
-        for (let collapsible of document.getElementsByClassName("collapsible")){
-            var content = collapsible.nextElementSibling;
-            collapsible.classList.toggle("active", state);
-            if (state) {
-                content.style.maxHeight = content.scrollHeight + "px";
-            } else {
-                content.style.maxHeight = null
-            }
-        }
-    });
-
-    let regenButton = document.getElementById("regen")
-    regenButton.addEventListener("click", async function() {
-        await setLocalStorage("running", true);
-        chrome.tabs.sendMessage(activeTab.id, {
-            type: "CLOSE"
-        });
-        let data = await sendHTTP(activeTab.url, activeTab.id);
-        initContent(data);
-    });
-
-    let saveButton = document.getElementById("save")
-    saveButton.addEventListener("click", async function() {
-        console.log("save button pressed!");
-        showDialog(dialog, "Saved!");
-        await addToStorageDict("transcripts", activeTab.url, data);
-    });
-
-    // settingsButton placeholder -- implement later.
-    let settingsButton = document.getElementById("settings");
-    settingsButton.addEventListener("click", async function() {
-        console.log("settings button pressed!");
-        showDialog(dialog, "Settings", deriveSettings(data))
-    })
-}
-
-/**
- * Initialize sidepanel and unfocus external apps
- * @param data                  data to be outputted
- */
-function initContent(data) {
-    let thumbnailCover = document.getElementById("tbCover");
-    let output = document.getElementById("output");
-    thumbnailCover.innerHTML = ""; output.innerHTML = "";
-
-    // Adding new content to sidepanel
-    thumbnailCover.appendChild(createInfoSection(data.info));
-    output.appendChild(createContentSection(activeTab.id, data.content));
-
-    initTaskbar(data);
-
-    chrome.extension.getViews({type: 'popup'}).forEach(v => v.close());
-    chrome.tabs.sendMessage(activeTab.id, { // Open sidepanel
-        type: "OPEN",
-    });
-}
-
 // Fires when script loaded
 document.addEventListener('DOMContentLoaded', async () => {
     activeTab = await getActiveTab();
@@ -182,7 +175,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         data = await sendHTTP(activeTab.url, activeTab.id);
         console.log("Initiating new data request...")
     }
-    initContent(data);
 
-    await removeFromStorage("saved"); // Clear for subsequent tasks
+    await initSidepanel(data);
 });

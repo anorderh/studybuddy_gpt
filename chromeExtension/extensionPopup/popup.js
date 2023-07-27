@@ -17,10 +17,14 @@ function getErrorStatus() {
 }
 
 function getLoader() {
+  let container = document.createElement("div");
+  container.className = "loaderContainer"
   let loader = document.createElement("span");
   loader.className = "loader";
 
-  return loader;
+  container.appendChild(loader)
+
+  return container;
 }
 
 /**

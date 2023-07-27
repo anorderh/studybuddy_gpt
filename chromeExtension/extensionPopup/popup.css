@@ -81,7 +81,7 @@ a * {
 .action {
     background-color: #282828;
     padding: 8px;
-    /*min-height: 24px;*/
+    min-height: 36px;
     height: fit-content;
     margin: 4px;
     /*display: flex;*/
