@@ -56,7 +56,7 @@ function queryPerURL(callback) {
 
 function getYoutubePlayer() {
     if (document.location.href.includes("youtube.com/watch")) {
-        alert("Player grabbed!");
+        // alert("Player grabbed!");
         youtubePlayer = document.getElementsByClassName('video-stream')[0];
         console.log(youtubePlayer)
     }

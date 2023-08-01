@@ -79,7 +79,7 @@ def find_mention(heading, transcript):
         .tolist()
     most_similar_phrase = transcript[cos_results.index(max(cos_results))]
 
-    debug_mention(heading, most_similar_phrase)
+    # debug_mention(heading, most_similar_phrase)
 
     return most_similar_phrase
 

@@ -1,0 +1,632 @@
+Nintendo Wii Remote Save Data Feature
+Matched with "about the ability to save data directly to your Wii Remote and bring it with you"
+Timestamp: 25.38
+
+Quirks of the Wii Remote Save Data Feature
+Matched with "about the ability to save data directly to your Wii Remote and bring it with you"
+Timestamp: 25.38
+
+Games that Utilized the Wii Remote Save Data Feature
+Matched with "about the ability to save data directly to your Wii Remote and bring it with you"
+Timestamp: 25.38
+
+Limitations and Discontinuation of the Wii Remote Save Data Feature
+Matched with "could say that the Wii remote save feature was usable in another 100-ish"
+Timestamp: 335.94
+
+Transcript Markdown File
+Matched with "the premium package 4.0 with the subscription but uh oh something in"
+Timestamp: 753.779
+
+Introduction
+Matched with "experience there's going to be a lot more where this came from but uh Hey as"
+Timestamp: 1085.94
+
+LT Sponsor - Best Buy
+Matched with "logged everything with the intention of developing and maintaining a sponsor"
+Timestamp: 77.04
+
+Sponsor - dbrand
+Matched with "sponsor dbrand and we may have decided to mess with them a little to see what"
+Timestamp: 394.919
+
+Sponsor - iFixit
+Matched with "logged everything with the intention of developing and maintaining a sponsor"
+Timestamp: 77.04
+
+Sponsor - Ugreen
+Matched with "logged everything with the intention of developing and maintaining a sponsor"
+Timestamp: 77.04
+
+Conclusion
+Matched with "might be looking for a more serious Summary of why exactly it is that we are"
+Timestamp: 1043.52
+
+Transcript Coverage
+Matched with "a video so that you can go and claim insurance with the carrier on like what"
+Timestamp: 934.68
+
+Introduction
+Matched with "experience there's going to be a lot more where this came from but uh Hey as"
+Timestamp: 1085.94
+
+Sponsors and Brand Partnerships
+Matched with "that our sponsors are doing all right overall I mean obviously it could be"
+Timestamp: 1016.639
+
+Product Issues and Customer Support Interactions
+Matched with "but I've worked in customer support it happens all the time and not helping"
+Timestamp: 360.66
+
+Refund Processes
+Matched with "we're gonna need a refund and a cancellation first we tried their"
+Timestamp: 763.8
+
+Conclusion and Call for Improvement
+Matched with "might be looking for a more serious Summary of why exactly it is that we are"
+Timestamp: 1043.52
+
+The Anom Phone: A Closer Look at the Encrypted and Secure Smartphone
+Matched with "this phone was sold to criminals as an encrypted and secure smartphone what"
+Timestamp: 0.24
+
+An Introduction to the Anom Phone
+Matched with "very little is known about the anom phone and its os but that's about to"
+Timestamp: 17.279
+
+The Anom Phone's Features and Specifications
+Matched with "a specific messaging application called anom however the devices and messaging"
+Timestamp: 91.92
+
+Exploring the Arcane OS Interface
+Matched with "it's very likely that arcane os was developed using open source projects and"
+Timestamp: 260.56
+
+Decoy Mode: An Alternate Interface
+Matched with "decoy pin to load the interface from what i believe this is just another user"
+Timestamp: 326.72
+
+Limitations and Security Measures
+Matched with "there is plenty of reasons to want more privacy and security especially with"
+Timestamp: 594.0
+
+Unraveling the Mysteries of the Anom Phone
+Matched with "undercover operation this is the anom phone"
+Timestamp: 7.919
+
+Conclusion: A Unique Piece of History
+Matched with "be an awesome part of history at least for now"
+Timestamp: 616.399
+
+Anom Phone: A Detailed Look at the Encrypted and Secure Smartphone
+Matched with "this phone was sold to criminals as an encrypted and secure smartphone what"
+Timestamp: 0.24
+
+Introduction
+Matched with "be an awesome part of history at least for now"
+Timestamp: 616.399
+
+The Anom Phone: An Overview
+Matched with "very little is known about the anom phone and its os but that's about to"
+Timestamp: 17.279
+
+The Functionality of the Anom Phone
+Matched with "undercover operation this is the anom phone"
+Timestamp: 7.919
+
+Exploring Arcane OS: The Operating System of the Anom Phone
+Matched with "it's very likely that arcane os was developed using open source projects and"
+Timestamp: 260.56
+
+The Main Interface
+Matched with "the first section we're going to explore is the main interface this is where you"
+Timestamp: 165.04
+
+Settings and Privacy Options
+Matched with "privacy options like app permissions or location settings in security we get all"
+Timestamp: 268.96
+
+The Battery Section and App List
+Matched with "silhouette of san francisco in the battery section i did find a list of"
+Timestamp: 312.0
+
+Decoy Mode: An Intriguing Interface
+Matched with "oddly the decoy mode features more functional apps than the main user it"
+Timestamp: 344.0
+
+Limitations and Unique Features of the Anom Phone
+Matched with "very little is known about the anom phone and its os but that's about to"
+Timestamp: 17.279
+
+Conclusion: The Locked Down Anom Phone
+Matched with "it's clear this phone was really thought out obviously this is key for the"
+Timestamp: 608.8
+
+Optimizing and Bug Fixing Mario 64 Source Code
+Matched with "[Music] we have to give the mario 64 source code"
+Timestamp: 409.35
+
+Introduction
+Matched with "between different parts of the architecture"
+Timestamp: 99.2
+
+Overview of the Optimization Process
+Matched with "to compile optimizations than just turning on optimizations unfortunately"
+Timestamp: 730.72
+
+Rendering and Frame Building
+Matched with "cik is the time it took until rendering the next frame started as long as this"
+Timestamp: 299.68
+
+Boot-Up Interactions
+Matched with "run in parallel i want to go over the first three frames on the game's boot up"
+Timestamp: 165.36
+
+RAM Access and Alignment
+Matched with "first we want to fix the ram alignment so that the shared rambus is not as much"
+Timestamp: 236.48
+
+Reduction of Duplicate Functions
+Matched with "working on different parts of this game a lot of functions have duplicate"
+Timestamp: 523.68
+
+Removal of Unnecessary Code
+Matched with "elegant to save on unnecessary comparisons and load less code in for"
+Timestamp: 476.16
+
+Inlining Assembly Functions
+Matched with "thing by inlining assembly functions like this this forces gcc to compile the"
+Timestamp: 623.04
+
+Batch Rendering
+Matched with "to properly run on n64 for example i've implemented batch rendering which allows"
+Timestamp: 657.36
+
+Impact on Frame Rate
+Matched with "great speed up on the rcp i know a frame rate on the scene is now easily above"
+Timestamp: 778.399
+
+Multiplayer Mode
+Matched with "that there is a good possibility that a multiplayer mode will run just fine"
+Timestamp: 948.24
+
+Conclusion
+Matched with "are being assessed and parallel and i use this knowledge to make sure that the"
+Timestamp: 353.12
+
+Optimizing and Bug Fixing the Mario 64 Source Code
+Matched with "[Music] we have to give the mario 64 source code"
+Timestamp: 409.35
+
+Introduction
+Matched with "between different parts of the architecture"
+Timestamp: 99.2
+
+Improving Performance
+Matched with "explain how this allows us to improve performance even further i will have to"
+Timestamp: 121.92
+
+Understanding Frame Building
+Matched with "to make you understand how this interacts so on the first frame we run"
+Timestamp: 170.64
+
+Boot-Up Interactions
+Matched with "run in parallel i want to go over the first three frames on the game's boot up"
+Timestamp: 165.36
+
+CPU and RCP Benchmarks
+Matched with "having the cpu finished before the rcp means that the rcp can use the rambos"
+Timestamp: 216.56
+
+RAM Bus and Rendering Optimization
+Matched with "ram bus so if you read from a different segment than before it gets to tank up"
+Timestamp: 343.44
+
+Code Review and Optimization
+Matched with "to compile optimizations than just turning on optimizations unfortunately"
+Timestamp: 730.72
+
+Implementing Batch Rendering
+Matched with "to properly run on n64 for example i've implemented batch rendering which allows"
+Timestamp: 657.36
+
+Multiplayer Mode Possibilities
+Matched with "that there is a good possibility that a multiplayer mode will run just fine"
+Timestamp: 948.24
+
+Conclusion
+Matched with "are being assessed and parallel and i use this knowledge to make sure that the"
+Timestamp: 353.12
+
+Nigel's Money-Making Adventure
+Matched with "want to see more of nigel and his future misadventures then please let me know in"
+Timestamp: 1157.76
+
+Introduction
+Matched with "a tutorial we have no choice but to comply after the cutscene ends i realize"
+Timestamp: 202.319
+
+Challenges and Initial Attempts
+Matched with "was starting to question if this challenge was even possible and if i was"
+Timestamp: 339.36
+
+A Failed Job and a Fresh Start
+Matched with "description i quickly quit the job but to my dismay i was once again forced"
+Timestamp: 264.4
+
+Seeking Legal Ways to Make Money
+Matched with "the comments also if you know of any other ways to make money legally that i"
+Timestamp: 1161.44
+
+The Quest for Action Figures
+Matched with "wanted to collect these action figures more efficiently so i saved up five"
+Timestamp: 387.199
+
+Grinding and Gold
+Matched with "to be completely legal i spent an hour grinding these out until i got gold on"
+Timestamp: 473.84
+
+The Search for Repeatable Money-Making Methods
+Matched with "repeatable way to make money as all of the ways i've made money so far have all"
+Timestamp: 492.8
+
+Bounty Hunting and Moral Dilemmas
+Matched with "willing to do some bounty hunting this was a very intriguing offer as doing"
+Timestamp: 556.0
+
+Unforeseen Challenges and Disappointments
+Matched with "thing i've done yet if you get a gold medal on one of these challenges you can"
+Timestamp: 466.879
+
+A Return to Parachuting
+Matched with "parachuting to be the slightly better option as they could be done slightly"
+Timestamp: 521.68
+
+Conclusion
+Matched with "can come up with anyway i'll see you later"
+Timestamp: 1172.32
+
+Nigel's Journey to Make Money Legally
+Matched with "obviously illegal especially as good old nigel here hasn't got a licence to be"
+Timestamp: 566.32
+
+Introduction
+Matched with "a tutorial we have no choice but to comply after the cutscene ends i realize"
+Timestamp: 202.319
+
+Nigel's Challenge
+Matched with "want to see more of nigel and his future misadventures then please let me know in"
+Timestamp: 1157.76
+
+Nigel's Initial Attempts
+Matched with "watching this shockingly outdated introduction nigel finally arrives in"
+Timestamp: 116.159
+
+Lamar's Challenge
+Matched with "this as a fail on a challenge after the race lamar forces us to do a job for him"
+Timestamp: 194.56
+
+Starting from Scratch
+Matched with "literally no way to make money at the start without breaking some rules but"
+Timestamp: 356.639
+
+The Quest for Money
+Matched with "when they're in desperate need of money i tried my luck at the casino after"
+Timestamp: 414.56
+
+Collecting Action Figures
+Matched with "then i remembered something there are 100 collectible action figures which are"
+Timestamp: 359.919
+
+Grinding for Cash
+Matched with "thought really hard about other methods that i could use to make money i went on"
+Timestamp: 1022.16
+
+Parachute Jumps
+Matched with "cracked on and grinded out these parachute jumps easily doing 40 plus"
+Timestamp: 528.88
+
+Bounty Hunting
+Matched with "doing these bounty hunts however if i could make one of these bounties"
+Timestamp: 570.32
+
+Targeting Bounties
+Matched with "have to either kill or beat these bounties into submission which is"
+Timestamp: 563.2
+
+Bounty Hunt Failures
+Matched with "doing these bounty hunts however if i could make one of these bounties"
+Timestamp: 570.32
+
+The Final Bounty
+Matched with "willing to do some bounty hunting this was a very intriguing offer as doing"
+Timestamp: 556.0
+
+The Disappointing Outcome
+Matched with "were starting to get quite serious now the only issue is that replaying these"
+Timestamp: 482.8
+
+Refocusing on Parachute Missions
+Matched with "options either put my head down and grind parachute missions until i hit my"
+Timestamp: 1011.04
+
+Nigel's Perseverance
+Matched with "want to see more of nigel and his future misadventures then please let me know in"
+Timestamp: 1157.76
+
+Nigel's Future Ventures
+Matched with "want to see more of nigel and his future misadventures then please let me know in"
+Timestamp: 1157.76
+
+Nigel's Money-Making Adventures
+Matched with "want to see more of nigel and his future misadventures then please let me know in"
+Timestamp: 1157.76
+
+Introduction
+Matched with "a tutorial we have no choice but to comply after the cutscene ends i realize"
+Timestamp: 202.319
+
+Nigel's First Attempt
+Matched with "watching this shockingly outdated introduction nigel finally arrives in"
+Timestamp: 116.159
+
+Starting Over
+Matched with "2. now that all of that is out of the way let's start our journey to be a"
+Timestamp: 78.96
+
+The Action Figure Hunt
+Matched with "doing these bounty hunts however if i could make one of these bounties"
+Timestamp: 570.32
+
+Grinding Out Action Figures
+Matched with "wanted to collect these action figures more efficiently so i saved up five"
+Timestamp: 387.199
+
+Exploring Other Jobs
+Matched with "about some pretty shady jobs that we can do to make some money which we obviously"
+Timestamp: 156.16
+
+Bounty Hunting
+Matched with "doing these bounty hunts however if i could make one of these bounties"
+Timestamp: 570.32
+
+The Bounty Hunting Journey
+Matched with "willing to do some bounty hunting this was a very intriguing offer as doing"
+Timestamp: 556.0
+
+Disappointing Rewards
+Matched with "bad idea luckily not long later another bounty target shows up this time in"
+Timestamp: 649.2
+
+Back to Parachute Missions
+Matched with "options either put my head down and grind parachute missions until i hit my"
+Timestamp: 1011.04
+
+Conclusion
+Matched with "can come up with anyway i'll see you later"
+Timestamp: 1172.32
+
+Nigel's Money-Making Journey
+Matched with "want to see more of nigel and his future misadventures then please let me know in"
+Timestamp: 1157.76
+
+Nigel's Challenge
+Matched with "want to see more of nigel and his future misadventures then please let me know in"
+Timestamp: 1157.76
+
+Starting Out
+Matched with "2. now that all of that is out of the way let's start our journey to be a"
+Timestamp: 78.96
+
+Failed Challenge
+Matched with "the target which in turn failed the mission in hindsight this was a really"
+Timestamp: 645.44
+
+Auto Drive Mishap
+Matched with "car went into auto drive mode and started to drive recklessly as i clearly"
+Timestamp: 187.599
+
+Job for Lamar
+Matched with "this as a fail on a challenge after the race lamar forces us to do a job for him"
+Timestamp: 194.56
+
+Starting Over
+Matched with "2. now that all of that is out of the way let's start our journey to be a"
+Timestamp: 78.96
+
+Legal Money-Making Attempts
+Matched with "thought really hard about other methods that i could use to make money i went on"
+Timestamp: 1022.16
+
+Grinding for Money
+Matched with "thought really hard about other methods that i could use to make money i went on"
+Timestamp: 1022.16
+
+Bounty Hunting
+Matched with "doing these bounty hunts however if i could make one of these bounties"
+Timestamp: 570.32
+
+Creative Bounty Hunting
+Matched with "willing to do some bounty hunting this was a very intriguing offer as doing"
+Timestamp: 556.0
+
+Disappointing Rewards
+Matched with "bad idea luckily not long later another bounty target shows up this time in"
+Timestamp: 649.2
+
+Seeking a New Method
+Matched with "tried the same method as before but surprisingly she managed to get herself"
+Timestamp: 897.92
+
+Parachute Mission Grinding
+Matched with "options either put my head down and grind parachute missions until i hit my"
+Timestamp: 1011.04
+
+Conclusion
+Matched with "can come up with anyway i'll see you later"
+Timestamp: 1172.32
+
+Detroit Lions 2023 Season Preview
+Matched with "the Detroit Lions are coming off a season where they finish nine and eight"
+Timestamp: 0.0
+
+Quarterback Situation
+Matched with "season first let's take a look at the lines quarterback situation with Jared"
+Timestamp: 24.96
+
+Wide Receivers
+Matched with "and honestly being one of the best receiver twos in the entire NFL so these"
+Timestamp: 88.32
+
+Additional Offensive Weapons
+Matched with "game the biggest strength on this Line's offense after all the weapons they added"
+Timestamp: 201.959
+
+Strong Offensive Line
+Matched with "is still the offensive line they have studs at pretty much every position on"
+Timestamp: 206.519
+
+Defensive Improvements
+Matched with "because that goes to their defense the defense had some great talent at"
+Timestamp: 233.7
+
+Predictions
+Matched with "all their additions and what we should be able to expect from them in the 2023"
+Timestamp: 20.46
+
+Savant Syndrome: The Extraordinary Abilities of Ordinary People
+Matched with "savan syndrome savant syndrome is a condition that gives people incredible"
+Timestamp: 50.399
+
+What is Savant Syndrome?
+Matched with "savan syndrome savant syndrome is a condition that gives people incredible"
+Timestamp: 50.399
+
+Three Different Paths to Savant Syndrome
+Matched with "savan syndrome savant syndrome is a condition that gives people incredible"
+Timestamp: 50.399
+
+Orlando's Brain Injury
+Matched with "about the accident the doctor ran some tests and it became clear orlando had"
+Timestamp: 46.079
+
+George's Dementia
+Matched with "although his brains seemed to be more and more damaged by his dementia some"
+Timestamp: 231.599
+
+Will's Autism Spectrum Disorder
+Matched with "autism spectrum disorder in general autism is characterized by difficulties"
+Timestamp: 247.84
+
+Can Savant Syndrome be Induced?
+Matched with "savan syndrome savant syndrome is a condition that gives people incredible"
+Timestamp: 50.399
+
+The Enigma of Savant Syndrome
+Matched with "savan syndrome savant syndrome is a condition that gives people incredible"
+Timestamp: 50.399
+
+Orlando's Incredible Abilities
+Matched with "soon however he realized that he gained incredible abilities he could remember"
+Timestamp: 29.279
+
+Savant Syndrome: An Extraordinary Phenomenon
+Matched with "savan syndrome savant syndrome is a condition that gives people incredible"
+Timestamp: 50.399
+
+The Impact of Brain Injuries, Dementia, and ASD
+Matched with "abilities in different ways through injuries dementia or autism spectrum"
+Timestamp: 110.56
+
+The Link Between Autism Spectrum Disorder and Savant Syndrome
+Matched with "autism spectrum disorder in general autism is characterized by difficulties"
+Timestamp: 247.84
+
+Exploring the Possibility of Inducing Savant Syndrome
+Matched with "savan syndrome savant syndrome is a condition that gives people incredible"
+Timestamp: 50.399
+
+The Enigma of Savant Syndrome
+Matched with "savan syndrome savant syndrome is a condition that gives people incredible"
+Timestamp: 50.399
+
+Mike Tyson vs. Mitch Blood Green: A Tale of Infamous Rivalry
+Matched with "two fight saga between mike tyson and mitch blood green a genuine beef that 10"
+Timestamp: 21.6
+
+Tyson's 10-Round Decision and the Impact on his Aura
+Matched with "after tyson's 10-round decision to james quick tillis in 1986 the inability aura"
+Timestamp: 51.92
+
+Mitch Blood Green: A Unique Character in the Boxing World
+Matched with "i'm gonna knock him out mitch blood green was one of the first fighters to"
+Timestamp: 93.52
+
+Tyson vs. Green: The First Match at a Prestigious Venue
+Matched with "may 1986 at madison square garden it was tyson's first match at a prestigious"
+Timestamp: 235.76
+
+Tyson's Unusual Behavior and Dominant Performance
+Matched with "in the ring but as his years of inactivity ensued tyson progressed to"
+Timestamp: 399.6
+
+Tyson's Claim and Green's Retirement
+Matched with "green retired from boxing after the tyson loss and returned to the street to"
+Timestamp: 392.4
+
+The Street Fight: Tyson vs. Green Rematch
+Matched with "both tyson and green were on the fringe of a world title shot so regardless of"
+Timestamp: 208.48
+
+Green's Failed Attempts and Life After Boxing
+Matched with "ever earning any serious money in the ring again after green's failed attempts"
+Timestamp: 503.12
+
+The Infamous Rivalry: Tyson and Green's Different Paths
+Matched with "both tyson and green were on the fringe of a world title shot so regardless of"
+Timestamp: 208.48
+
+Mike Tyson vs. Mitch Blood Green: The Infamous Two-Fight Saga
+Matched with "two fight saga between mike tyson and mitch blood green a genuine beef that 10"
+Timestamp: 21.6
+
+Tyson's 10-Round Decision to James Quick Tillis
+Matched with "after tyson's 10-round decision to james quick tillis in 1986 the inability aura"
+Timestamp: 51.92
+
+The Rise of Mitch Blood Green
+Matched with "i'm gonna knock him out mitch blood green was one of the first fighters to"
+Timestamp: 93.52
+
+Green's Tough Background
+Matched with "green is still a largest life character but now employs his energy into his love"
+Timestamp: 545.68
+
+Tyson and Green on the Fringe of a Title Shot
+Matched with "both tyson and green were on the fringe of a world title shot so regardless of"
+Timestamp: 208.48
+
+Tyson vs. Green: The First Fight
+Matched with "tyson is smiling but see green has those fast hands the fight became so routine"
+Timestamp: 324.479
+
+Tyson Claims to Carry Green for 10 Rounds
+Matched with "discipline in there not knocking him out tyson claimed he carried green the 10"
+Timestamp: 378.08
+
+Green's Life After the Fight
+Matched with "green is still a largest life character but now employs his energy into his love"
+Timestamp: 545.68
+
+Tyson vs. Green: The Street Fight
+Matched with "tyson is smiling but see green has those fast hands the fight became so routine"
+Timestamp: 324.479
+
+Green's Failed Attempts for a Rematch
+Matched with "ever earning any serious money in the ring again after green's failed attempts"
+Timestamp: 503.12
+
+Tyson and Green Today
+Matched with "tyson is smiling but see green has those fast hands the fight became so routine"
+Timestamp: 324.479
+

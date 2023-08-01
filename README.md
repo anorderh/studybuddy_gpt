@@ -3,7 +3,7 @@
 ![studybuddy](assets/studybuddyBanner.jpeg)
 
 </div>
-<div align="center"><em>A Chrome extension emphasizing efficient video comprehension, powered by Javascript, Flask, Heroku, and ChatGPT</em></div>
+<div align="center"><em>A Chrome extension emphasizing efficient video comprehension, powered by Javascript, Python, Flask, and OpenAI GPT-3 models</em></div>
 <p></p>
 
 <div align="center">
@@ -15,50 +15,68 @@
 
 </div>
 
+## Demo
+
+
+
 ## Goal
 
-This repo's goal was to package the functionality of ChatGPT's language models into an accessible and lightweight browser application. This was possible thanks to the deployment of an external `flask` server and Chrome's implementation of **background** vs. **content scripts**.
+This project's goal is to package the functionality of OpenAI's language processing models into an accessible and lightweight browser application. This project follows a client server design pattern, using an external `flask` server for API requests and data parsing.
 
 ## Features
 
-1. Generate detailed text outlines from YouTube videos in approximately <1 minute.
+1. **Make video content more straightforward by extracting & rendering it as text within the browser.**
 
-![rendering](assets/rendering.gif)
+2. **Format by topic and package content into toggleable sections, containing a heading, body, and if applicable, Markdown formatting.**
 
-2) Follow alongside toggleable sections in better understanding and retaining core ideas and notable info.
+3. **Identify topics' specific mention during a video and generate timestamps for quick navigation.**
 
-![info](assets/info.gif)
+4. **Enable keyword and important phrase searching through rendered text.**
 
-3. Identify and more accurately traverse segments within your video using matched timestamps.
+5. **Package and export text as PDFs for later reference and local storage.**
 
-![timestamps](assets/timestamps.gif)
+## Limitations
 
-4. Search Studybuddy's locally-rendered HTML for keywords.
-
-![search](assets/search.gif)
-
-## Usage
-
-**NOTE: Studybuddy has NOT yet been deployed on Chrome Web Store.** Refer to "Development".
-
-1. Download and add the Chrome extension to your browser - refresh!
-2. Navigate to a Youtube video page (matches `youtube.com/watch` URL)
-3. Click generate button
-4. *OPTIONAL*: Save transcripts to persist onto browser and/or export into PDFs
-
-## Development
-
-* While Studybuddy's core works, there are several quality-of-life fixes and bugs which I am in the process of fixing
-* As such, both the extension AND webserver (API) have *not been deployed*
-* While this will be addressed soon, you are still able to use the extension with a local `flask` server
-  * In `modules/http.js`, line 6 is configured to **localhost**
-
+This project is currently **in development**.
+* Ongoing tasks...
+	- [ ] Flask server's handling for OpenAI errors
+	- [ ] Client's handling for Flask server errors
+	- [ ] Overflow text leaving blank space in PDF exports
+	- [ ] Parsing YT desc sections
+	- [ ] PDF export options
+	- [ ] Reversing sidepanel iframe implementation
+	- [ ] Minimize sidepanel
+	- [ ] Bundling multiple OpenAI requests for longer videos
+* This extension has not been deployed onto the Chrome Web app store
+	* In addition, the web server has not been deployed (runs on localhost)
+    
+This project is best suited for videos 8-18 minutes long, and reaches inaccuracies beyond 30 minutes.
+* OpenAI proposes a 4000 word token limit per request
+* Videos longer are shortened in order to fit inside the 4000 word limit
+	* Shortening does *not* mean an abrupt cutoff, instead removing unnecessary phrases. However, excessive length may lead shortening to cause inaccuracies.
+	* Until multiple request functionality is finished.
+    
+Timestamps are liable to inaccuracy
+* Current ID involves matching headings with phrases within the video's transcript
+* Headings can be mismatched with unrelated sections
+	* Can be alleviated by parsing YT sections in descriptions
+    
+Exporting PDFs with Markdown is currently not supported.
+* While the browser is able to render Markdown thanks to "md-block.js", the current PDF exporting does not recognize the syntax and outputs as plain text
+    
+This project uses GPT-3 modes in parsing Youtube video content, and is liable to misrepresented extracted info.
+* As opposed to summarization, this project attempts to cover video content in bulk.
+* As a result, it is poor at detecting conveyed sarcasm and/or nuance.
+    
 ## Dependencies
 
 * [Flask](https://flask.palletsprojects.com/en/2.3.x/)
 * [Chrome Extension API](https://developer.chrome.com/docs/extensions/reference/)
 * [OpenAI Platform](https://platform.openai.com/docs/guides/gpt)
 * [Pytube](https://github.com/pytube/pytube)
+* [jsPDF](https://github.com/parallax/jsPDF)
+* [md-block.js](https://github.com/leaverou/md-block)
+* [html2canvas](https://github.com/niklasvh/html2canvas)
 
 ## Contributing
 

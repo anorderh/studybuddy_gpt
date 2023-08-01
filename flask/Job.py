@@ -1,6 +1,6 @@
 import tiktoken
 from pytube import YouTube
-from youtube_transcript_api import YouTubeTranscriptApi
+from youtube_transcript_api import YouTubeTranscriptApi, TranscriptsDisabled
 
 
 def condense_transcript(transcript_obj, scale):
@@ -65,8 +65,9 @@ class Job:
 
     def build_prompt(self):
         self.prompt = "Generate a detailed, and comprehensive Markdown file, with headings, " \
-                          "bullets, numbered lists, and typographical emphasis, solely from the transcript" \
-                          "covered in the following text. Use all remaining tokens. Include a sentence-long intro."
+                          "numbered lists, and typographical emphasis, solely from the transcript" \
+                          "covered in the following text. Use all remaining tokens. Include a sentence-long intro. " \
+                          "Do not use bullet points."
         self.prompt_token_count = len(self.tokenizer.encode(self.prompt))
 
     def load_yt_video(self):
@@ -75,6 +76,13 @@ class Job:
         self.title = yt.title
         self.video_id = yt.video_id
         self.thumbnail_url = yt.thumbnail_url
+
+        try:
+            transcript_obj = YouTubeTranscriptApi.get_transcript(self.video_id)
+        except TranscriptsDisabled:
+            # Now with error caught, implement how Python request should return
+            print("error")
+            return
 
         transcript_obj = YouTubeTranscriptApi.get_transcript(self.video_id)
 
