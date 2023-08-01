@@ -3,7 +3,7 @@
 ![studybuddy](assets/studybuddyBanner.jpeg)
 
 </div>
-<div align="center"><em>A Chrome extension emphasizing efficient video comprehension, powered by Javascript, Python, Flask, and OpenAI GPT-3 models</em></div>
+<div align="center"><em>A Chrome extension emphasizing efficient video comprehension, <br> powered by Javascript, Python, Flask, and OpenAI GPT-3 models</em></div>
 <p></p>
 
 <div align="center">
@@ -17,7 +17,7 @@
 
 ## Demo
 
-
+https://github.com/anorderh/studybuddy_gpt/assets/60157725/05964fcf-d5fa-4c5d-860a-ab07b5a6379b
 
 ## Goal
 
